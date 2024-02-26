@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://example.com/payloadSchema"
+            targetNamespace="http://example.com/payloadSchema" elementFormDefault="qualified">
+            
+<xsd:element name="getPayloadResponse">
+<xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="aircraft" maxOccurs="unbounded">
+             <xsd:complexType>
+              <xsd:sequence>
+                      <xsd:element name="serial" type="xsd:int"></xsd:element>
+                      <xsd:element name="type" type="xsd:string"></xsd:element>
+                      <xsd:element name="role">
+                        <xsd:simpleType>
+                          <xsd:restriction base="xsd:string">
+                            <xsd:enumeration value="Air Superiority Fighter"/>
+                            <xsd:enumeration value="Multirole Fighter"/>
+                            <xsd:enumeration value="Electronic Warfare"/>
+                          </xsd:restriction>
+                        </xsd:simpleType>
+                      </xsd:element>
+                      <xsd:element name="weaponList">
+                        <xsd:complexType>
+                          <xsd:sequence>
+                            <xsd:element name="weapon" maxOccurs="unbounded" type="xsd:string"></xsd:element>
+                          </xsd:sequence>
+                        </xsd:complexType>
+                      </xsd:element>
+              </xsd:sequence> 
+             </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+  </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

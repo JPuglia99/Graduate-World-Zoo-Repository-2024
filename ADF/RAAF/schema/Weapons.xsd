@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://example.com/weaponSchema"
+            targetNamespace="http://example.com/weaponSchema" elementFormDefault="qualified">
+ 
+  <xsd:element name="getWeaponRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+          <xsd:element name="weapon" maxOccurs="unbounded">
+           <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="model">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[A-Z]+.*-[0-9]+.*[A-Z]"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="role">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="F"/>
+                      <xsd:enumeration value="FB"/>
+                      <xsd:enumeration value="EW"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
