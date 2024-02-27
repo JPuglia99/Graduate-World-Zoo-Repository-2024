@@ -40,7 +40,7 @@
             <soap:operation style="document" soapAction="getPayload"/>
             <wsdl:input>
                 <soap:body use="literal" namespace="http://xmlns.oracle.com/ADF_C4ISR/RAAF/RAAFT" parts="weaponRequest"/>
-                <soap:header message="tns:requestMessage" part="fighterRequest" use="literal"/>
+                <soap:body use="literal" namespace="http://xmlns.oracle.com/ADF_C4ISR/RAAF/RAAFT" parts="fighterRequest"/>
             </wsdl:input>
             <wsdl:output>
                 <soap:body use="literal" namespace="http://xmlns.oracle.com/ADF_C4ISR/RAAF/RAAFT"/>
