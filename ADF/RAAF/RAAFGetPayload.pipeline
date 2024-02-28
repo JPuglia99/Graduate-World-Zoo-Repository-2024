@@ -18,7 +18,7 @@
                 <con:context/>
                 <con:actions>
                     <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
-                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-abd978f.28ce1bb4.0.18de2d2bd3d.N7ff0</con2:id>
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-abd978f.N470816f.0.18de3e7c702.N7ffe</con2:id>
                     </con1:replace>
                 </con:actions>
             </con:stage>
@@ -48,9 +48,6 @@
                     <con1:userNsDecl prefix="fig" namespace="http://example.com/fighterSchema" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
                 </con:context>
                 <con:actions>
-                    <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
-                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-abd978f.28ce1bb4.0.18de2d2bd3d.N7faf</con2:id>
-                    </con1:validate>
                     <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
                         <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-abd978f.28ce1bb4.0.18de2d2bd3d.N7ff6</con2:id>
                         <con1:schema ref="RAAF/schema/Fighters"/>
