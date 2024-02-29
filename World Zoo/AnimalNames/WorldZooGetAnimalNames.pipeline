@@ -78,6 +78,24 @@
             </con:stage>
         </con:pipeline>
         <con:pipeline type="request" name="request-abd908b.15eb6d2b.0.18dd3510541.N7ffc">
+            <con:stage id="_StageId-abd978f.N470816f.0.18de3e7c702.N7ffb" name="Assign">
+                <con:context>
+                    <con1:userNsDecl prefix="anim" namespace="http://example.com/animalSchema" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                </con:context>
+                <con:actions>
+                    <con1:assign varName="getAnimalNamesResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-abd978f.N470816f.0.18de3e7c702.N7ffa</con2:id>
+                        <con1:expr>
+                            <con2:xqueryTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                <con2:resource ref="AnimalNames/xquery/getAnimalNamesRequest_to_get_AnimalNames"/>
+                                <con2:param name="getAnimalNamesRequest">
+                                    <con2:path>$body/anim:getAnimalNamesRequest</con2:path>
+                                </con2:param>
+                            </con2:xqueryTransform>
+                        </con1:expr>
+                    </con1:assign>
+                </con:actions>
+            </con:stage>
             <con:stage id="_StageId-abd908b.15eb6d2b.0.18dd3510541.N7ffa" name="Replace Request">
                 <con:context>
                     <con1:userNsDecl prefix="anim" namespace="http://example.com/animalSchema" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
@@ -89,12 +107,7 @@
                             <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
                         </con1:location>
                         <con1:expr>
-                            <con2:xqueryTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
-                                <con2:resource ref="AnimalNames/xquery/getAnimalNamesRequest_to_get_AnimalNames"/>
-                                <con2:param name="getAnimalNamesRequest">
-                                    <con2:path>$body/anim:getAnimalNamesRequest</con2:path>
-                                </con2:param>
-                            </con2:xqueryTransform>
+                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$getAnimalNamesResponse</con2:xqueryText>
                         </con1:expr>
                     </con1:replace>
                 </con:actions>
@@ -115,6 +128,27 @@
                 <con:request>request-abd908b.15eb6d2b.0.18dd3510541.N7ffc</con:request>
                 <con:response>response-abd908b.15eb6d2b.0.18dd3510541.N7ffb</con:response>
             </con:pipeline-node>
+            <con:route-node name="To Queue">
+                <con:context/>
+                <con:actions>
+                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-abd978f.N470816f.0.18de3e7c702.N7fc0</con2:id>
+                        <con1:service ref="AnimalNames/business/WorldZooGetAnimalNamesQueue" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con1:outboundTransform/>
+                        <con1:responseTransform>
+                            <con1:replace contents-only="true" varName="body" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-abd978f.N470816f.0.18de3e7c702.N7fbd</con2:id>
+                                <con1:location>
+                                    <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
+                                </con1:location>
+                                <con1:expr>
+                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$getAnimalNamesResponse</con2:xqueryText>
+                                </con1:expr>
+                            </con1:replace>
+                        </con1:responseTransform>
+                    </con1:route>
+                </con:actions>
+            </con:route-node>
         </con:flow>
     </con:router>
 </con:pipelineEntry>
