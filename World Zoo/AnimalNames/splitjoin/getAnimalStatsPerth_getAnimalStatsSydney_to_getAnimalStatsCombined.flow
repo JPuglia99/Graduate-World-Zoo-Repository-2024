@@ -29,18 +29,19 @@
 	       <bpel:variable name="getAnimalStatsSydney" messageType="bind:getAnimalStatsResponseMessage">
 	       </bpel:variable>
         <bpel:variable name="getAnimalStatsPerth" messageType="bind:getAnimalStatsResponseMessage"/>
-        <bpel:variable name="getAnimalStatsCombined" element="ns0:getAnimalStatsResponse"/>
+        <bpel:variable name="getAnimalStatsCombined" messageType="bind:getAnimalStatsResponseMessage"/>
     </bpel:variables>
 
     <bpel:sequence>
-        <bpel:receive partnerLink="getAnimalStatsPerth_getAnimalStatsSydney_to_getAnimalStatsCombined" operation="getAnimalNames" variable="request" createInstance="yes">
+        <bpel:receive partnerLink="getAnimalStatsPerth_getAnimalStatsSydney_to_getAnimalStatsCombined"
+                      operation="getAnimalStats" createInstance="yes" variable="request">
 	           <rescon:receiveInfo>
                 <rescon:wsdl ref="AnimalNames/wsdl/WorldZooAnimals" binding="bind:WorldZooAnimalsBinding"/>
             </rescon:receiveInfo>
         </bpel:receive>
         <bpel:assign>
             <bpel:extensionAssignOperation>
-                <trf:assign varName="getAnimalStatsCombined">
+                <trf:assign varName="getAnimalStatsCombined.requestPart">
                     <trf:expr>
                         <expr:xqueryText>&lt;getAnimalStatsResponse&gt;&lt;/getAnimalStatsResponse&gt;</expr:xqueryText>
                     </trf:expr>
@@ -73,10 +74,22 @@
         </bpel:flow>
         <bpel:assign>
             <bpel:extensionAssignOperation>
-                <trf:replace contents-only="false"/>
+                <trf:replace contents-only="false" varName="getAnimalStatsCombined.requestPart">
+                    <trf:location>
+                        <expr:xpathText>.</expr:xpathText>
+                    </trf:location>
+                    <trf:expr>
+                        <expr:xqueryTransform>
+                            <expr:resource ref="AnimalNames/xquery/getAnimalStatsPerth_getAnimalStatsSydney_to_CombinedAnimalStats"/>
+                            <expr:param name="getAnimalNamesRequest">
+                                <expr:path>$getAnimalStatsCombined.requestPart</expr:path>
+                            </expr:param>
+                        </expr:xqueryTransform>
+                    </trf:expr>
+                </trf:replace>
             </bpel:extensionAssignOperation>
         </bpel:assign>
-        <bpel:reply partnerLink="getAnimalStatsPerth_getAnimalStatsSydney_to_getAnimalStatsCombined" operation="getAnimalNames"
-                    variable="getAnimalStatsSydney"></bpel:reply>
+        <bpel:reply partnerLink="getAnimalStatsPerth_getAnimalStatsSydney_to_getAnimalStatsCombined"
+                    operation="getAnimalStats" variable="getAnimalStatsCombined"></bpel:reply>
     </bpel:sequence>
 </bpel:process>
