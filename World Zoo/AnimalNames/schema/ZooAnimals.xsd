@@ -17,6 +17,21 @@
   </xsd:complexType>
   </xsd:element>
   
+  <xsd:element name="getAnimalStatsRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="animal" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"></xsd:element>
+            <xsd:element name="password" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  </xsd:element>
+  
 <xsd:element name="getAnimalNamesResponse">
 <xsd:complexType>
           <xsd:sequence>
@@ -24,4 +39,22 @@
           </xsd:sequence>
   </xsd:complexType>
   </xsd:element>
+  
+<xsd:element name="getAnimalStatsResponse">
+<xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="animal" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"></xsd:element>
+            <xsd:element name="species" type="xsd:string"></xsd:element>
+            <xsd:element name="habitat" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:element>
+  
 </xsd:schema>

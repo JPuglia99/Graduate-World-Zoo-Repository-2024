@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://example.com/aircraftSchema"
+            targetNamespace="http://example.com/aircraftSchema" elementFormDefault="qualified"
+            xmlns:air="http://example.com/aircraftBaseSchema" air:schemaLocation="AircraftBase.xsd"
+            air:namespace="http:example.com/aircraftBaseSchema"
+            >
+
+
+<xsd:import namespace="http://example.com/aircraftBaseSchema" schemaLocation="AircraftBase.xsd" xmlns:air="http://www.w3.org/2001/XMLSchema"/>            
+<xsd:element name="getPlaneRequest">  
+    <xsd:complexType>
+      <xsd:sequence>
+         <xsd:element ref="air:aircraftList"/>
+       </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  
+<xsd:element name="getPlaneResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+      <xsd:element name="aircraft" maxOccurs="unbounded">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="callsign"/>
+                <xsd:element name="type"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:element>
+</xsd:schema>

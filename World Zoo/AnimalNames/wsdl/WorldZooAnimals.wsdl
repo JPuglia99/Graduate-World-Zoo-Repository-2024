@@ -4,21 +4,41 @@
 			<xsd:import namespace="http://example.com/animalSchema" schemaLocation="../schema/ZooAnimals.xsd"/>
 		</xsd:schema>
 	</wsdl:types>
+        <!-- GET Animal Names-->
 	<wsdl:message name="getAnimalNamesRequestMessage">
 		<wsdl:part name="requestPart" element="zoan:getAnimalNamesRequest"/>
 	</wsdl:message>
 	<wsdl:message name="getAnimalNamesResponseMessage">
 		<wsdl:part name="requestPart" element="zoan:getAnimalNamesResponse"/>
 	</wsdl:message>
+        <!-- GET Animal Stats-->
+        <wsdl:message name="getAnimalStatsRequestMessage">
+		<wsdl:part name="requestPart" element="zoan:getAnimalStatsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getAnimalStatsResponseMessage">
+		<wsdl:part name="requestPart" element="zoan:getAnimalStatsResponse"/>
+	</wsdl:message>
 	<wsdl:portType name="worldZooAnimalsPortType">
 		<wsdl:operation name="getAnimalNames">
 			<wsdl:input message="woza:getAnimalNamesRequestMessage"/>
 			<wsdl:output message="woza:getAnimalNamesResponseMessage"/>
 		</wsdl:operation>
+                <wsdl:operation name="getAnimalStats">
+			<wsdl:input message="woza:getAnimalStatsRequestMessage"/>
+			<wsdl:output message="woza:getAnimalStatsResponseMessage"/>
+		</wsdl:operation>
 	</wsdl:portType>
 	<wsdl:binding name="WorldZooAnimalsBinding" type="woza:worldZooAnimalsPortType">
 		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 		<wsdl:operation name="getAnimalNames">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getAnimalStats">
 			<wsdl:input>
 				<soap:body use="literal"/>
 			</wsdl:input>
