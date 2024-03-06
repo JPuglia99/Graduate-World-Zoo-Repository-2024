@@ -1,0 +1,3 @@
+<anim:getAnimalNamesResponse xmlns:anim="http://example.com/animalSchema">
+<anim:name>Elephant, Lion, Tiger</anim:name>
+</anim:getAnimalNamesResponse>

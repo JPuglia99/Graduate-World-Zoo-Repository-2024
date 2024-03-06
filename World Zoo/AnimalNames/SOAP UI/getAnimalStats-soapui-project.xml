@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="3a8eb4ce-4ed9-4818-8ea0-476ff42093d6" activeEnvironment="Default" name="getAnimalStats" resourceRoot="" soapui-version="5.7.2" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="fe5560d7-4ac8-4ef2-9bb1-f6345fd4182b" wsaVersion="NONE" name="WorldZooAnimalsBinding" type="wsdl" bindingName="{http://example.com/worldzooanimals}WorldZooAnimalsBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/JDeveloper/mywork/World%20Zoo/AnimalNames/wsdl/WorldZooAnimals.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\JDeveloper\mywork\World%20Zoo\AnimalNames\wsdl\WorldZooAnimals.wsdl"><con:part><con:url>file:\C:\JDeveloper\mywork\World%20Zoo\AnimalNames\wsdl\WorldZooAnimals.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="WorldZooAnimals" targetNamespace="http://example.com/worldzooanimals" xmlns:woza="http://example.com/worldzooanimals" xmlns:zoan="http://example.com/animalSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://example.com/animalSchema" schemaLocation="../schema/ZooAnimals.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAnimalNamesRequestMessage">
+    <wsdl:part name="requestPart" element="zoan:getAnimalNamesRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getAnimalStatsRequestMessage">
+    <wsdl:part name="requestPart" element="zoan:getAnimalStatsRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getAnimalNamesResponseMessage">
+    <wsdl:part name="requestPart" element="zoan:getAnimalNamesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getAnimalStatsResponseMessage">
+    <wsdl:part name="requestPart" element="zoan:getAnimalStatsResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="worldZooAnimalsPortType">
+    <wsdl:operation name="getAnimalNames">
+      <wsdl:input message="woza:getAnimalNamesRequestMessage"/>
+      <wsdl:output message="woza:getAnimalNamesResponseMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAnimalStats">
+      <wsdl:input message="woza:getAnimalStatsRequestMessage"/>
+      <wsdl:output message="woza:getAnimalStatsResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WorldZooAnimalsBinding" type="woza:worldZooAnimalsPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getAnimalNames">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnimalStats">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WorldZooAnimals">
+    <wsdl:port name="NameServicePortTypePort" binding="woza:WorldZooAnimalsBinding">
+      <soap:address location="http://www.example.com"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\JDeveloper\mywork\World%20Zoo\AnimalNames\schema\ZooAnimals.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://example.com/animalSchema" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.example.org">
+  <xsd:element name="getAnimalNamesRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="animal" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="name" type="xsd:string"/>
+              <xsd:element name="species" type="xsd:string"/>
+              <xsd:element name="habitat" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getAnimalNamesResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="name" type="xsd:string"></xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getAnimalStatsRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ID" type="xsd:int"/>
+        <xsd:element name="Password" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getAnimalStatsResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="animal" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="name" type="xsd:string"/>
+              <xsd:element name="species" type="xsd:string"/>
+              <xsd:element name="habitat" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://AU-LPC21YC2L:8080/PerthZooMockService</con:endpoint><con:endpoint>http://AU-LPC21YC2L:8080/SydneyZooMockService</con:endpoint><con:endpoint>http://www.example.com</con:endpoint></con:endpoints><con:operation id="7a50f6ab-95ee-40c7-99c0-0800518189e1" isOneWay="false" action="" name="getAnimalNames" bindingOperationName="getAnimalNames" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="604d3b1c-f3b3-4641-bbf2-0c0348a216a9" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.example.com</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:anim="http://example.com/animalSchema">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <anim:getAnimalNamesRequest>\r
+         <!--1 or more repetitions:-->\r
+         <anim:animal>\r
+            <anim:name>?</anim:name>\r
+            <anim:species>?</anim:species>\r
+            <anim:habitat>?</anim:habitat>\r
+         </anim:animal>\r
+      </anim:getAnimalNamesRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/worldzooanimals/worldZooAnimalsPortType/getAnimalNamesRequest"/></con:call></con:operation><con:operation id="23b53117-b4f1-4a92-8c50-ecbcb7f3e984" isOneWay="false" action="" name="getAnimalStats" bindingOperationName="getAnimalStats" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b74ddd8f-ea81-4817-b35a-6334dd4174b1" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://AU-LPC21YC2L:8080/SydneyZooMockService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:anim="http://example.com/animalSchema">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <anim:getAnimalStatsRequest>\r
+         <anim:ID>123</anim:ID>\r
+         <anim:Password>password</anim:Password>\r
+      </anim:getAnimalStatsRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/worldzooanimals/worldZooAnimalsPortType/getAnimalStatsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="1a031976-44a0-413c-8c7a-af63317f95b2" port="8080" path="/PerthZooMockService" host="AU-LPC21YC2L" name="PerthZooMock" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getAnimalStats" id="c92a2d8e-03d5-4736-abb1-141b3eb9f34e" interface="WorldZooAnimalsBinding" operation="getAnimalStats"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="01fa674d-3c18-4828-8ae8-7cfde54250c0" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:anim="http://example.com/animalSchema">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <anim:getAnimalStatsResponse>
+         <!--1 or more repetitions:-->
+         <anim:animal>
+            <anim:name>Panda</anim:name>
+            <anim:species>Black</anim:species>
+            <anim:habitat>White</anim:habitat>
+         </anim:animal>
+         <anim:animal>
+            <anim:name>Sealion</anim:name>
+            <anim:species>Sea</anim:species>
+            <anim:habitat>Lion</anim:habitat>
+         </anim:animal>
+         <anim:animal>
+            <anim:name>Meercat</anim:name>
+            <anim:species>Meer</anim:species>
+            <anim:habitat>Cat</anim:habitat>
+         </anim:animal>
+      </anim:getAnimalStatsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/worldzooanimals/worldZooAnimalsPortType/getAnimalStatsResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:mockService id="e2e7c0a4-62a4-4949-9cdb-956b484ee373" port="8080" path="/SydneyZooMockService" host="AU-LPC21YC2L" name="SydneyZooMock" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getAnimalStats" id="ab40ab4c-fa47-49c8-8ddd-a79a0c2b1755" interface="WorldZooAnimalsBinding" operation="getAnimalStats"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="680dcc10-03dd-4487-af60-c802fc00b0dd" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:anim="http://example.com/animalSchema">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <anim:getAnimalStatsResponse>
+         <!--1 or more repetitions:-->
+         <anim:animal>
+            <anim:name>Lion</anim:name>
+            <anim:species>Meow</anim:species>
+            <anim:habitat>Housepet</anim:habitat>
+         </anim:animal>
+         <anim:animal>
+            <anim:name>Leopard</anim:name>
+            <anim:species>Meow</anim:species>
+            <anim:habitat>Not a housepet</anim:habitat>
+         </anim:animal>
+         <anim:animal>
+            <anim:name>Zebra</anim:name>
+            <anim:species>Crossing</anim:species>
+            <anim:habitat>Stripey</anim:habitat>
+         </anim:animal>
+      </anim:getAnimalStatsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/worldzooanimals/worldZooAnimalsPortType/getAnimalStatsResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

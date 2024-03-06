@@ -1,0 +1,4 @@
+<anim:getAnimalStatsRequest xmlns:anim="http://example.com/animalSchema">
+   <anim:ID>123</anim:ID>
+   <anim:Password>ABCD</anim:Password>
+</anim:getAnimalStatsRequest>

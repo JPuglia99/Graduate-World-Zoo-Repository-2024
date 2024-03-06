@@ -1,0 +1,13 @@
+<anim:getAnimalNamesRequest xmlns:anim="http://example.com/animalSchema">
+    <!--1 or more repetitions:-->
+    <anim:animal>
+        <anim:name>Lion</anim:name>
+        <anim:species>Panthera leo</anim:species>
+        <anim:habitat>Savannah</anim:habitat>
+    </anim:animal>
+    <anim:animal>
+        <anim:name>Elephant</anim:name>
+        <anim:species>Loxodonta africana</anim:species>
+        <anim:habitat>Forest and Grasslands</anim:habitat>
+    </anim:animal>
+</anim:getAnimalNamesRequest>

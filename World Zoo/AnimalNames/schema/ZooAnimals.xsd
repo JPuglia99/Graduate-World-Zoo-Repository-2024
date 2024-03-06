@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.example.org"
+            targetNamespace="http://example.com/animalSchema" elementFormDefault="qualified">
+  <xsd:element name="getAnimalNamesRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="animal" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"></xsd:element>
+            <xsd:element name="species" type="xsd:string"></xsd:element>
+            <xsd:element name="habitat" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getAnimalNamesResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="name" type="xsd:string">
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+<<<<<<< HEAD
+=======
+  <xsd:element name="getAnimalStatsRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ID" type="xsd:int"></xsd:element>
+        <xsd:element name="Password" type="xsd:string"></xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getAnimalStatsResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="animal" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"></xsd:element>
+            <xsd:element name="species" type="xsd:string"></xsd:element>
+            <xsd:element name="habitat" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+>>>>>>> 1f7ce2d (Assignment 5 attempt)
+</xsd:schema>
