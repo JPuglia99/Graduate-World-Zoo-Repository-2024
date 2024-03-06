@@ -20,14 +20,8 @@
   <xsd:element name="getAnimalStatsRequest">
     <xsd:complexType>
       <xsd:sequence>
-        <xsd:element name="animal" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
             <xsd:element name="id" type="xsd:int"></xsd:element>
             <xsd:element name="password" type="xsd:string"></xsd:element>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   </xsd:element>
