@@ -2,19 +2,20 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://example.com/aircraftBaseSchema"
             targetNamespace="http://example.com/aircraftBaseSchema" elementFormDefault="qualified">
             
-        <!-- Define elements using the compelx types-->
+        <!-- Define elements using complex types-->
         <xsd:element name="aircraftList">
           <xsd:complexType>
             <xsd:sequence>
-              <xsd:element name="aircraft" type="aircraftType" maxOccurs="unbounded"/>
+              <xsd:element name="aircraft" type="aircraftType" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
         
-        <!-- Define complex types -->
+        <!-- Define base complex types -->
         <xsd:complexType name="aircraftType">
           <xsd:sequence>
-              <xsd:element name="callsign">
+              <!-- Codeshare airliners can have multiple callsigns, private planes may not have a callsign -->
+              <xsd:element name="callsign" minOccurs="0" maxOccurs="unbounded">
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
                    <!-- Airliner callsign, e.g. QF16 -->
@@ -22,22 +23,32 @@
                   </xsd:restriction>
                 </xsd:simpleType>
              </xsd:element>
-            <xsd:element name="type" type="builderType"/>
+            <xsd:element name="model" type="modelType"/>
             <xsd:element name="rego" type="regoType"/>
-            <xsd:element name="flightPlans" type="flightPlans" maxOccurs="unbounded"/>
+            <xsd:element name="currAirspace" type="xsd:string"/>
+            <xsd:element name="flightPlanList">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="flightPlan" type="flightPlan" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+                
             
           </xsd:sequence>
         </xsd:complexType>
         
-        <xsd:complexType name="builderType">
+        <xsd:complexType name="modelType">
           <xsd:sequence>
             <xsd:element name="manufacturer" type="xsd:string"></xsd:element>
             <xsd:element name="type" type="xsd:string"></xsd:element>
           </xsd:sequence>
         </xsd:complexType>
-                        
+                      
+        <!-- Registration Base Type-->                
         <xsd:complexType name="regoType">
           <xsd:sequence>
+            <!-- Name of the owner -->
             <xsd:element name="name" type="xsd:string"></xsd:element>
             <xsd:element name="rego">
                 <xsd:simpleType>
@@ -65,22 +76,21 @@
           </xsd:sequence>
         </xsd:complexType>
         
-        
-        <!-- *********Needs amending !!!!-->
-         <xsd:complexType name="flightPlans">
+        <!-- Flight Plan Base -->
+         <xsd:complexType name="flightPlan">
            <xsd:sequence>
              <xsd:element name="toWeight" type="xsd:positiveInteger"/>
              <xsd:element name="rule">
               <xsd:simpleType>
                 <xsd:restriction base="xsd:string">
-                  <!--Flight rules are indicated as; V(VFR) and I(IFR)-->
+                  <!--Flight rules; V(VFR) and I(IFR)-->
                   <xsd:enumeration value="V"/>
                 <xsd:enumeration value="I"/>
               </xsd:restriction>
             </xsd:simpleType>
           </xsd:element>
           
-          <!--Aerodrome ICAO codes e.g. YBBN-->
+          <!--Departure and Destination Aerodrome ICAO codes e.g. YBBN-->
           <xsd:element name="departure">
             <xsd:simpleType>
               <xsd:restriction base="xsd:string">
@@ -88,6 +98,7 @@
               </xsd:restriction>
             </xsd:simpleType>
           </xsd:element>
+          
           <xsd:element name="desto">
             <xsd:simpleType>
               <xsd:restriction base="xsd:string">
