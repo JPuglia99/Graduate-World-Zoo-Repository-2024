@@ -9,17 +9,7 @@
   <xsd:element name="getPlaneRequest">
       <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="airspace">
-             <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                  <!-- Airspaces option, MEL, BNE and ALL  -->
-                  <xsd:enumeration value="MEL"/>
-                  <xsd:enumeration value="BNE"/>
-                  <xsd:enumeration value="ALL"/>
-              </xsd:restriction>
-            </xsd:simpleType>
-            </xsd:element>
-              
+            <xsd:element name="airspace" type="xsd:string"/>
           </xsd:sequence>
       </xsd:complexType>
   </xsd:element>

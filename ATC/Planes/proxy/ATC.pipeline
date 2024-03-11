@@ -137,6 +137,29 @@
                 </con:actions>
             </con:stage>
         </con:pipeline>
+        <con:pipeline type="error" name="error-abd9090.N4e57ece9.0.18e2be2a7f5.N7c38">
+            <con:stage id="_StageId-abd9090.N4e57ece9.0.18e2be2a7f5.N7c37" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con1:replace varName="body" contents-only="true" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-abd9090.N4e57ece9.0.18e2be2a7f5.N7c34</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config"><![CDATA[<soap-env:Fault>
+<faultcode>Server Error</faultcode>
+<faultstring>{$body/soap-env:Fault/faultstring/text()}</faultstring>
+<detail>
+<ErrorCode>400 Bad Request</ErrorCode>
+<ErrorMsg>The query does not match any airspace, please specify it with BNE, MEL or ALL</ErrorMsg>
+</detail>
+</soap-env:Fault>]]></con2:xqueryText>
+                        </con1:expr>
+                    </con1:replace>
+                    <con1:reply isError="true" xmlns:con1="http://www.bea.com/wli/sb/stages/config">
+                        <con1:id>_ActionId-abd9090.N4e57ece9.0.18e2be2a7f5.N7c31</con1:id>
+                    </con1:reply>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
         <con:flow>
             <con:branch-node type="operation" id="_FlowId-abd97a5.N4dcdcff2.0.18e1b050462.N7915" name="BranchNode1">
                 <con:context/>
@@ -149,7 +172,7 @@
                                 <con:request>request-abd97a5.N4dcdcff2.0.18e1b050462.N7914</con:request>
                                 <con:response>response-abd97a5.N4dcdcff2.0.18e1b050462.N7913</con:response>
                             </con:pipeline-node>
-                            <con:route-node name="Plane Route">
+                            <con:route-node name="Plane Route" error-handler="error-abd9090.N4e57ece9.0.18e2be2a7f5.N7c38">
                                 <con:context>
                                     <con1:userNsDecl prefix="air" namespace="http://example.com/aircraftSchema" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
                                 </con:context>
