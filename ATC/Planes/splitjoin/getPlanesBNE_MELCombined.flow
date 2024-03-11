@@ -144,7 +144,7 @@
                     </bpel:scope>
                     <bpel:assign>
                         <bpel:extensionAssignOperation>
-                            <trf:assign varName="getPlaneBNE.responsePart">
+                            <trf:replace contents-only="false" varName="getPlaneCombined.responsePart">
                                 <trf:expr>
                                     <expr:xqueryTransform>
                                         <expr:resource ref="Planes/xquery/getPlaneRequest"/>
@@ -156,7 +156,7 @@
                                         </expr:param>
                                     </expr:xqueryTransform>
                                 </trf:expr>
-                            </trf:assign>
+                            </trf:replace>
                         </bpel:extensionAssignOperation>
                     </bpel:assign>
                 </bpel:sequence>
@@ -189,7 +189,7 @@
                     </bpel:scope>
                     <bpel:assign>
                         <bpel:extensionAssignOperation>
-                            <trf:assign varName="getPlaneMEL.responsePart">
+                            <trf:replace contents-only="false" varName="getPlaneCombined.responsePart">
                                 <trf:expr>
                                     <expr:xqueryTransform>
                                         <expr:resource ref="Planes/xquery/getPlaneRequest"/>
@@ -201,7 +201,7 @@
                                         </expr:param>
                                     </expr:xqueryTransform>
                                 </trf:expr>
-                            </trf:assign>
+                            </trf:replace>
                         </bpel:extensionAssignOperation>
                     </bpel:assign>
                     <bpel:assign>
