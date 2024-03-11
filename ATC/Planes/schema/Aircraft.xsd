@@ -2,52 +2,69 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://example.com/aircraftSchema"
             targetNamespace="http://example.com/aircraftSchema" elementFormDefault="qualified"
             xmlns:air="http://example.com/aircraftBaseSchema" air:schemaLocation="AircraftBase.xsd"
-            air:namespace="http:example.com/aircraftBaseSchema"
-            >
-
-
-<xsd:import namespace="http://example.com/aircraftBaseSchema" schemaLocation="AircraftBase.xsd" xmlns:air="http://www.w3.org/2001/XMLSchema"/>            
-<xsd:element name="getPlaneRequest">  
+            air:namespace="http:example.com/aircraftBaseSchema">
+  <xsd:import namespace="http://example.com/aircraftBaseSchema" schemaLocation="AircraftBase.xsd"
+              xmlns="http://example.com/aircraftBaseSchema"/>
+              
+  <xsd:element name="getPlaneRequest">
+      <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="airspace">
+             <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <!-- Airspaces option, MEL, BNE and ALL  -->
+                  <xsd:enumeration value="MEL"/>
+                  <xsd:enumeration value="BNE"/>
+                  <xsd:enumeration value="ALL"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+            </xsd:element>
+              
+          </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+  
+  <xsd:element name="getPlanRequest">
     <xsd:complexType>
       <xsd:sequence>
-         <xsd:element ref="air:aircraftList"/>
-       </xsd:sequence>
-    </xsd:complexType>
-</xsd:element>
-
-<xsd:element name="getPlanRequest">
-    <xsd:complexType>
-      <xsd:sequence>
-          <xsd:element name="callsign" type="xsd:string" maxOccurs="unbounded"/>
+        <xsd:element name="rego" type="xsd:string" maxOccurs="unbounded"/>
       </xsd:sequence>
     </xsd:complexType>
-</xsd:element>
-
-<xsd:element name="getPlaneResponse">
+  </xsd:element>
+  
+  <xsd:element name="getPlaneResponse">
     <xsd:complexType>
       <xsd:sequence>
-      <!-- Foreach count() aircraft, put in description-->
-      <xsd:element name="description"/>
-      <xsd:element name="aircraft" maxOccurs="unbounded">
-        <xsd:complexType>
+        <!-- Foreach count() aircraft, put in description-->
+        <xsd:element name="description"/>
+        <xsd:element name="aircraftList">
+          <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="callsign" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="rego" type="xsd:string" maxOccurs="1"/>
-                <xsd:element name="type" type="xsd:string"/>
+             <xsd:element name="aircraft" type="air:aircraft" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
       </xsd:sequence>
     </xsd:complexType>
-</xsd:element>
-
-<xsd:element name="getPlanResponse">
+  </xsd:element>
+  
+  <xsd:element name="getPlanResponse">
     <xsd:complexType>
-        <xsd:sequence>
-            <!-- Foreach count() flightplan, put in description -->
-            <xsd:element name="description" type="xsd:string"/>
-            <xsd:element name="flightPlan" type="air:flightPlan" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
+      <xsd:sequence>
+        <!-- Foreach count() flightplan, put in description -->
+        <xsd:element name="description" type="xsd:string"/>
+        <xsd:element name="flightPlanList">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="flightPlan" type="air:flightPlan" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
     </xsd:complexType>
-</xsd:element>
+  </xsd:element>
+  
+   <!-- Global variable for counting planes -->
+   <xsd:element name="planeCounter" type="xsd:int"/>
+       
 </xsd:schema>

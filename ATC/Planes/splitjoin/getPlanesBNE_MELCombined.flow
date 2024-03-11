@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process name="getPlanesBNE_MELCombined"
+              targetNamespace="http://xmlns.oracle.com/AirTrafficControl/Planes/"
+              xmlns:tns="http://xmlns.oracle.com/AirTrafficControl/Planes/"
+              xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:rescon="http://www.bea.com/alsb/flow/resources/config"
+              xmlns:bea="http://www.bea.com/bpel/ui/extensions"
+              xmlns:ext="http://www.bea.com/bpel/extensions"
+              xmlns:expr="http://www.bea.com/wli/sb/stages/config"
+              xmlns:trf="http://www.bea.com/wli/sb/stages/transform/config"
+              xmlns:bind="http://example.com/planes" 
+              bea:name="getPlanesBNE_MELCombined"
+              rescon:snippetVersion="1.0"
+              xmlns:ns0="http://www.bea.com/wli/sb/reference" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:ns1="http://www.bea.com/wli/sb/stages/logging/config" xmlns:air="http://example.com/aircraftSchema">
+    <bpel:partnerLinks>
+        <bpel:partnerLink name="getPlanesBNE_MELCombined" partnerLinkType="tns:getPlanesBNE_MELCombined"
+                          myRole="getPlanesBNE_MELCombined">
+	       </bpel:partnerLink>
+        <bpel:partnerLink name="BNEBusinessService" partnerLinkType="tns:BNEBusinessService"
+                          partnerRole="BNEBusinessService"/>
+        <bpel:partnerLink name="MELBusinessService" partnerLinkType="tns:MELBusinessService"
+                          partnerRole="MELBusinessService"/>
+    </bpel:partnerLinks>
+
+	   <bpel:variables>
+        <bpel:variable name="request"
+	                      messageType="bind:getPlaneRequestMessage">
+	       </bpel:variable>
+	       <bpel:variable name="getPlaneBNE" messageType="bind:getPlaneResponseMessage">
+	       </bpel:variable>
+        <bpel:variable name="getPlaneMEL" messageType="bind:getPlaneResponseMessage"/>
+        <bpel:variable name="getPlaneCombined" messageType="bind:getPlaneResponseMessage"/>
+    </bpel:variables>
+
+    <bpel:sequence>
+        <bpel:receive partnerLink="getPlanesBNE_MELCombined" operation="getPlane" variable="request" createInstance="yes">
+	           <rescon:receiveInfo>
+                <rescon:wsdl ref="Planes/wsdl/ATC" binding="bind:ATCBinding"/>
+            </rescon:receiveInfo>
+        </bpel:receive>
+        <bpel:assign>
+            <bpel:extensionAssignOperation>
+                <trf:assign varName="getPlaneCombined.responsePart">
+                    <trf:expr>
+                        <expr:xqueryText>&lt;getPlaneResponse&gt;&lt;/getPlaneResponse&gt;</expr:xqueryText>
+                    </trf:expr>
+                </trf:assign>
+            </bpel:extensionAssignOperation>
+        </bpel:assign>
+        <bpel:if>
+            <bpel:condition>$request.requestPart/air:airspace="ALL"</bpel:condition>
+            <bpel:sequence>
+                <bpel:empty/>
+                <bpel:flow bea:name="ALL">
+                    <bpel:scope bea:name="BNE">
+                        <bpel:sequence>
+                            <bpel:invoke outputVariable="getPlaneBNE" partnerLink="BNEBusinessService"
+                                         operation="getPlane" inputVariable="request">
+                                <rescon:invokeInfo>
+                                    <rescon:service ref="Planes/business/BNEBusinessService"
+                                                    xsi:type="ns0:BusinessServiceRef"/>
+                                </rescon:invokeInfo>
+                            </bpel:invoke>
+                            <bpel:assign>
+                                <bpel:extensionAssignOperation>
+                                    <ns1:log>
+                                        <ns1:expr>
+                                            <expr:xqueryText>$getPlaneBNE.responsePart</expr:xqueryText>
+                                        </ns1:expr>
+                                        <ns1:logLevel>error</ns1:logLevel>
+                                        <ns1:message>~~~~~~~~~~Logging BNE Plane Response~~~~~~~~</ns1:message>
+                                    </ns1:log>
+                                </bpel:extensionAssignOperation>
+                            </bpel:assign>
+                        </bpel:sequence>
+                    </bpel:scope>
+                    <bpel:scope bea:name="MEL">
+                        <bpel:sequence>
+                            <bpel:invoke outputVariable="getPlaneMEL" partnerLink="MELBusinessService"
+                                         operation="getPlane" inputVariable="request">
+                                <rescon:invokeInfo>
+                                    <rescon:service ref="Planes/business/MELBusinessService"
+                                                    xsi:type="ns0:BusinessServiceRef"/>
+                                </rescon:invokeInfo>
+                            </bpel:invoke>
+                            <bpel:assign>
+                                <bpel:extensionAssignOperation>
+                                    <ns1:log>
+                                        <ns1:expr>
+                                            <expr:xqueryText>$getPlaneMEL.responsePart</expr:xqueryText>
+                                        </ns1:expr>
+                                        <ns1:logLevel>error</ns1:logLevel>
+                                        <ns1:message>~~~~~~~~~~Logging MEL Plane Response~~~~~~~~~</ns1:message>
+                                    </ns1:log>
+                                </bpel:extensionAssignOperation>
+                            </bpel:assign>
+                        </bpel:sequence>
+                    </bpel:scope>
+                </bpel:flow>
+                <bpel:assign>
+                    <bpel:extensionAssignOperation>
+                        <trf:replace contents-only="false" varName="getPlaneCombined.responsePart">
+                            <trf:expr>
+                                <expr:xqueryTransform>
+                                    <expr:resource ref="Planes/xquery/getPlaneRequest"/>
+                                    <expr:param name="getPlaneBNE">
+                                        <expr:path>$getPlaneBNE.responsePart</expr:path>
+                                    </expr:param>
+                                    <expr:param name="getPlaneMEL">
+                                        <expr:path>$getPlaneMEL.responsePart</expr:path>
+                                    </expr:param>
+                                </expr:xqueryTransform>
+                            </trf:expr>
+                        </trf:replace>
+                    </bpel:extensionAssignOperation>
+                </bpel:assign>
+            </bpel:sequence>
+            <bpel:elseif>
+                <bpel:condition>$request.requestPart/air:airspace="BNE"</bpel:condition>
+                <bpel:sequence>
+                    <bpel:empty/>
+                    <bpel:scope bea:name="BNE">
+                        <bpel:sequence>
+                            <bpel:invoke outputVariable="getPlaneBNE" partnerLink="BNEBusinessService"
+                                         operation="getPlane" inputVariable="request">
+                                <rescon:invokeInfo>
+                                    <rescon:service ref="Planes/business/BNEBusinessService"
+                                                    xsi:type="ns0:BusinessServiceRef"/>
+                                </rescon:invokeInfo>
+                            </bpel:invoke>
+                            <bpel:assign>
+                                <bpel:extensionAssignOperation>
+                                    <ns1:log>
+                                        <ns1:expr>
+                                            <expr:xqueryText>$getPlaneBNE.responsePart</expr:xqueryText>
+                                        </ns1:expr>
+                                        <ns1:logLevel>error</ns1:logLevel>
+                                        <ns1:message>~~~~~~~~~~Logging BNE Plane Response~~~~~~~~</ns1:message>
+                                    </ns1:log>
+                                </bpel:extensionAssignOperation>
+                            </bpel:assign>
+                        </bpel:sequence>
+                    </bpel:scope>
+                    <bpel:assign>
+                        <bpel:extensionAssignOperation>
+                            <trf:assign varName="getPlaneBNE.responsePart">
+                                <trf:expr>
+                                    <expr:xqueryTransform>
+                                        <expr:resource ref="Planes/xquery/getPlaneRequest"/>
+                                        <expr:param name="getPlaneBNE">
+                                            <expr:path>$getPlaneBNE.responsePart</expr:path>
+                                        </expr:param>
+                                        <expr:param name="getPlaneMEL">
+                                            <expr:path>&lt;getPlaneResponse&gt;&lt;/getPlaneResponse&gt;</expr:path>
+                                        </expr:param>
+                                    </expr:xqueryTransform>
+                                </trf:expr>
+                            </trf:assign>
+                        </bpel:extensionAssignOperation>
+                    </bpel:assign>
+                </bpel:sequence>
+            </bpel:elseif>
+            <bpel:elseif>
+                <bpel:condition>$request.requestPart/air:airspace="MEL"</bpel:condition>
+                <bpel:sequence>
+                    <bpel:empty/>
+                    <bpel:scope bea:name="MEL">
+                        <bpel:sequence>
+                            <bpel:invoke outputVariable="getPlaneMEL" partnerLink="MELBusinessService"
+                                         operation="getPlane" inputVariable="request">
+                                <rescon:invokeInfo>
+                                    <rescon:service ref="Planes/business/MELBusinessService"
+                                                    xsi:type="ns0:BusinessServiceRef"/>
+                                </rescon:invokeInfo>
+                            </bpel:invoke>
+                            <bpel:assign>
+                                <bpel:extensionAssignOperation>
+                                    <ns1:log>
+                                        <ns1:expr>
+                                            <expr:xqueryText>$getPlaneMEL.responsePart</expr:xqueryText>
+                                        </ns1:expr>
+                                        <ns1:logLevel>error</ns1:logLevel>
+                                        <ns1:message>~~~~~~~~~~Logging MEL Plane Response~~~~~~~~~</ns1:message>
+                                    </ns1:log>
+                                </bpel:extensionAssignOperation>
+                            </bpel:assign>
+                        </bpel:sequence>
+                    </bpel:scope>
+                    <bpel:assign>
+                        <bpel:extensionAssignOperation>
+                            <trf:assign varName="getPlaneMEL.responsePart">
+                                <trf:expr>
+                                    <expr:xqueryTransform>
+                                        <expr:resource ref="Planes/xquery/getPlaneRequest"/>
+                                        <expr:param name="getPlaneBNE">
+                                            <expr:path>&lt;getPlaneResponse&gt;&lt;/getPlaneResponse&gt;</expr:path>
+                                        </expr:param>
+                                        <expr:param name="getPlaneMEL">
+                                            <expr:path>$getPlaneMEL.responsePart</expr:path>
+                                        </expr:param>
+                                    </expr:xqueryTransform>
+                                </trf:expr>
+                            </trf:assign>
+                        </bpel:extensionAssignOperation>
+                    </bpel:assign>
+                    <bpel:assign>
+                        <bpel:extensionAssignOperation>
+                            <ns1:log>
+                                <ns1:expr>
+                                    <expr:xqueryText>$getPlaneMEL.responsePart</expr:xqueryText>
+                                </ns1:expr>
+                                <ns1:logLevel>error</ns1:logLevel>
+                                <ns1:message>~~~~~~~~~~~~~~~~~~~~~Combined, MEL ONLY~~~~~~~~~~~~~~~~~</ns1:message>
+                            </ns1:log>
+                        </bpel:extensionAssignOperation>
+                    </bpel:assign>
+                </bpel:sequence>
+            </bpel:elseif>
+            <bpel:else>
+                <bpel:sequence>
+                    <bpel:empty/>
+                    <bpel:throw faultName="tns:noAirspaceSpecified"/>
+                </bpel:sequence>
+            </bpel:else>
+        </bpel:if>
+        <bpel:assign>
+            <bpel:extensionAssignOperation>
+                <ns1:log>
+                    <ns1:expr>
+                        <expr:xqueryText>$getPlaneCombined.responsePart</expr:xqueryText>
+                    </ns1:expr>
+                    <ns1:message>~~~~~~~~~Logging Combined Plane Response~~~~~~~~~~</ns1:message>
+                    <ns1:logLevel>error</ns1:logLevel>
+                </ns1:log>
+            </bpel:extensionAssignOperation>
+        </bpel:assign>
+        <bpel:reply partnerLink="getPlanesBNE_MELCombined" operation="getPlane" variable="getPlaneCombined"></bpel:reply>
+    </bpel:sequence>
+</bpel:process>

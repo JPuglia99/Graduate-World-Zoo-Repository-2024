@@ -1,0 +1,55 @@
+<wsdl:definitions name="Planes" targetNamespace="http://example.com/planes" xmlns:woza="http://example.com/planes" xmlns:zoan="http://example.com/aircraftSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://example.com/aircraftSchema" schemaLocation="../schema/Aircraft.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+        <!-- GET Planes -->
+	<wsdl:message name="getPlaneRequestMessage">
+		<wsdl:part name="requestPart" element="zoan:getPlaneRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getPlaneResponseMessage">
+		<wsdl:part name="responsePart" element="zoan:getPlaneResponse"/>
+	</wsdl:message>
+        <!-- GET Plans -->
+        <wsdl:message name="getPlanRequestMessage">
+		<wsdl:part name="requestPart" element="zoan:getPlanRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getPlanResponseMessage">
+		<wsdl:part name="responsePart" element="zoan:getPlanResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="ATCPortType">
+		<wsdl:operation name="getPlane">
+			<wsdl:input message="woza:getPlaneRequestMessage"/>
+			<wsdl:output message="woza:getPlaneResponseMessage"/>
+		</wsdl:operation>
+                <wsdl:operation name="getPlan">
+			<wsdl:input message="woza:getPlanRequestMessage"/>
+			<wsdl:output message="woza:getPlanResponseMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ATCBinding" type="woza:ATCPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="getPlane">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+                <wsdl:operation name="getPlan">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ATC">
+		<wsdl:port name="NameServicePortTypePort" binding="woza:ATCBinding">
+			<soap:address location="http://www.example.com"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

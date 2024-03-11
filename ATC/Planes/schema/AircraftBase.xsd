@@ -2,46 +2,29 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://example.com/aircraftBaseSchema"
             targetNamespace="http://example.com/aircraftBaseSchema" elementFormDefault="qualified">
             
-        <!-- Define elements using complex types-->
-        <xsd:element name="aircraftList">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="aircraft" type="aircraftType" minOccurs="0" maxOccurs="unbounded"/>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-        
+
         <!-- Define base complex types -->
-        <xsd:complexType name="aircraftType">
+        <xsd:complexType name="aircraft">
           <xsd:sequence>
-              <!-- Codeshare airliners can have multiple callsigns, private planes may not have a callsign -->
-              <xsd:element name="callsign" minOccurs="0" maxOccurs="unbounded">
+              <!-- Private planes may not have a callsign -->
+              <xsd:element name="callsign">
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
                    <!-- Airliner callsign, e.g. QF16 -->
-                   <xsd:pattern value="^[A-Z]{2,3}[0-9]{1}[A-Z0-9]{0,3}"/>
+                   <xsd:pattern value="[A-Z0-9-]{0,6}"/>
                   </xsd:restriction>
                 </xsd:simpleType>
              </xsd:element>
-            <xsd:element name="model" type="modelType"/>
-            <xsd:element name="rego" type="regoType"/>
-            <xsd:element name="currAirspace" type="xsd:string"/>
-            <xsd:element name="flightPlanList">
-              <xsd:complexType>
-                <xsd:sequence>
-                  <xsd:element name="flightPlan" type="flightPlan" minOccurs="0" maxOccurs="unbounded"/>
-                </xsd:sequence>
-              </xsd:complexType>
-            </xsd:element>
-                
+            <xsd:element name="aircraftModel" type="modelType"/>
+            <xsd:element name="aircraftRego" type="regoType"/>       
             
           </xsd:sequence>
         </xsd:complexType>
         
         <xsd:complexType name="modelType">
           <xsd:sequence>
-            <xsd:element name="manufacturer" type="xsd:string"></xsd:element>
-            <xsd:element name="type" type="xsd:string"></xsd:element>
+            <xsd:element name="aircraftBuilder" type="xsd:string"></xsd:element>
+            <xsd:element name="aircraftModel" type="xsd:string"></xsd:element>
           </xsd:sequence>
         </xsd:complexType>
                       
@@ -49,15 +32,15 @@
         <xsd:complexType name="regoType">
           <xsd:sequence>
             <!-- Name of the owner -->
-            <xsd:element name="name" type="xsd:string"></xsd:element>
-            <xsd:element name="rego">
+            <xsd:element name="ownerName" type="xsd:string"/>
+            <xsd:element name="regoNo">
                 <xsd:simpleType>
                    <xsd:restriction base="xsd:string">
-                     <xsd:pattern value="^[A-Z0-9-]+$"/>
+                     <xsd:pattern value="[A-Z0-9-]+"/>
                    </xsd:restriction>
                 </xsd:simpleType>
               </xsd:element>
-            <xsd:element name="type">
+            <xsd:element name="ownerType">
               <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="Private"/>
@@ -69,7 +52,7 @@
               <xsd:simpleType>
                 <xsd:restriction base="xsd:string">
                   <!-- Airline code, if private, defaults to PVT-->
-                  <xsd:pattern value="^[A-Z]{2,3}"/>
+                  <xsd:pattern value="[A-Z]{2,3}"/>
                 </xsd:restriction>
              </xsd:simpleType>
             </xsd:element>
@@ -94,7 +77,7 @@
           <xsd:element name="departure">
             <xsd:simpleType>
               <xsd:restriction base="xsd:string">
-               <xsd:pattern value="^[A-Z]{4}"/>
+               <xsd:pattern value="[A-Z]{4}"/>
               </xsd:restriction>
             </xsd:simpleType>
           </xsd:element>
@@ -102,11 +85,15 @@
           <xsd:element name="desto">
             <xsd:simpleType>
               <xsd:restriction base="xsd:string">
-                <xsd:pattern value="^[A-Z]{4}"/>
+                <xsd:pattern value="[A-Z]{4}"/>
               </xsd:restriction>
             </xsd:simpleType>
           </xsd:element>
+          
         </xsd:sequence>
 
+
+   
+        
     </xsd:complexType>
 </xsd:schema>

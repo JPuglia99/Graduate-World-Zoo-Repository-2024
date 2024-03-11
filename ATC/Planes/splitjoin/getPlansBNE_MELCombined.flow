@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process name="getPlansBNE_MELCombined"
+              targetNamespace="http://xmlns.oracle.com/AirTrafficControl/Planes/"
+              xmlns:tns="http://xmlns.oracle.com/AirTrafficControl/Planes/"
+              xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:rescon="http://www.bea.com/alsb/flow/resources/config"
+              xmlns:bea="http://www.bea.com/bpel/ui/extensions"
+              xmlns:ext="http://www.bea.com/bpel/extensions"
+              xmlns:expr="http://www.bea.com/wli/sb/stages/config"
+              xmlns:trf="http://www.bea.com/wli/sb/stages/transform/config"
+              xmlns:bind="http://example.com/planes" 
+              bea:name="getPlansBNE_MELCombined"
+              rescon:snippetVersion="1.0"
+              xmlns:ns0="http://www.bea.com/wli/sb/reference" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <bpel:partnerLinks>
+        <bpel:partnerLink name="getPlansBNE_MELCombined" partnerLinkType="tns:getPlansBNE_MELCombined"
+                          myRole="getPlansBNE_MELCombined">
+	       </bpel:partnerLink>
+        <bpel:partnerLink name="BNEBusinessService" partnerLinkType="tns:BNEBusinessService"
+                          partnerRole="BNEBusinessService"/>
+        <bpel:partnerLink name="MELBusinessService" partnerLinkType="tns:MELBusinessService"
+                          partnerRole="MELBusinessService"/>
+    </bpel:partnerLinks>
+
+	   <bpel:variables>
+        <bpel:variable name="request" messageType="bind:getPlanRequestMessage">
+	       </bpel:variable>
+	       <bpel:variable name="getPlanMEL" messageType="bind:getPlanResponseMessage">
+	       </bpel:variable>
+        <bpel:variable name="getPlanBNE" messageType="bind:getPlanResponseMessage"/>
+        <bpel:variable name="getPlanCombined" messageType="bind:getPlanResponseMessage"/>
+    </bpel:variables>
+
+    <bpel:sequence>
+        <bpel:receive partnerLink="getPlansBNE_MELCombined" operation="getPlan" variable="request" createInstance="yes">
+	           <rescon:receiveInfo>
+                <rescon:wsdl ref="Planes/wsdl/ATC" binding="bind:ATCBinding"/>
+            </rescon:receiveInfo>
+        </bpel:receive>
+        <bpel:assign>
+            <bpel:extensionAssignOperation>
+                <trf:assign varName="getPlanCombined.responsePart">
+                    <trf:expr>
+                        <expr:xqueryText>&lt;getPlanResponse&gt;&lt;/getPlanResponse&gt;</expr:xqueryText>
+                    </trf:expr>
+                </trf:assign>
+            </bpel:extensionAssignOperation>
+        </bpel:assign>
+        <bpel:flow>
+            <bpel:scope bea:name="BNE">
+                <bpel:sequence>
+                    <bpel:invoke partnerLink="BNEBusinessService" operation="getPlan" inputVariable="request"
+                                 outputVariable="getPlanBNE">
+                        <rescon:invokeInfo>
+                            <rescon:service ref="Planes/business/BNEBusinessService" xsi:type="ns0:BusinessServiceRef"/>
+                        </rescon:invokeInfo>
+                    </bpel:invoke>
+                </bpel:sequence>
+            </bpel:scope>
+            <bpel:scope bea:name="MEL">
+                <bpel:sequence>
+                    <bpel:invoke partnerLink="MELBusinessService" operation="getPlan" inputVariable="request"
+                                 outputVariable="getPlanMEL">
+                        <rescon:invokeInfo>
+                            <rescon:service ref="Planes/business/MELBusinessService" xsi:type="ns0:BusinessServiceRef"/>
+                        </rescon:invokeInfo>
+                    </bpel:invoke>
+                </bpel:sequence>
+            </bpel:scope>
+        </bpel:flow>
+        <bpel:assign>
+            <bpel:extensionAssignOperation>
+                <trf:replace contents-only="false" varName="getPlanCombined.responsePart">
+                    <trf:expr>
+                        <expr:xqueryTransform>
+                            <expr:resource ref="Planes/xquery/getPlanRequest"/>
+                            <expr:param name="getPlanBNE">
+                                <expr:path>$getPlanBNE.responsePart</expr:path>
+                            </expr:param>
+                            <expr:param name="getPlanMEL">
+                                <expr:path>$getPlanMEL.responsePart</expr:path>
+                            </expr:param>
+                        </expr:xqueryTransform>
+                    </trf:expr>
+                </trf:replace>
+            </bpel:extensionAssignOperation>
+        </bpel:assign>
+        <bpel:reply partnerLink="getPlansBNE_MELCombined" operation="getPlan" variable="getPlanCombined"></bpel:reply>
+    </bpel:sequence>
+</bpel:process>
