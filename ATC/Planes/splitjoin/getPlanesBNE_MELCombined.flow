@@ -107,6 +107,9 @@
                                     <expr:param name="getPlaneBNE">
                                         <expr:path>$getPlaneBNE.responsePart</expr:path>
                                     </expr:param>
+                                    <expr:param name="getPlaneRequest">
+                                        <expr:path>$request.requestPart/air:airspace</expr:path>
+                                    </expr:param>
                                     <expr:param name="getPlaneMEL">
                                         <expr:path>$getPlaneMEL.responsePart</expr:path>
                                     </expr:param>
@@ -150,6 +153,9 @@
                                         <expr:resource ref="Planes/xquery/getPlaneRequest"/>
                                         <expr:param name="getPlaneBNE">
                                             <expr:path>$getPlaneBNE.responsePart</expr:path>
+                                        </expr:param>
+                                        <expr:param name="getPlaneRequest">
+                                            <expr:path>$request.requestPart/air:airspace="BNE"</expr:path>
                                         </expr:param>
                                         <expr:param name="getPlaneMEL">
                                             <expr:path>&lt;getPlaneResponse&gt;&lt;/getPlaneResponse&gt;</expr:path>
@@ -195,6 +201,9 @@
                                         <expr:resource ref="Planes/xquery/getPlaneRequest"/>
                                         <expr:param name="getPlaneBNE">
                                             <expr:path>&lt;getPlaneResponse&gt;&lt;/getPlaneResponse&gt;</expr:path>
+                                        </expr:param>
+                                        <expr:param name="getPlaneRequest">
+                                            <expr:path>($request.requestPart/air:airspace)="MEL"</expr:path>
                                         </expr:param>
                                         <expr:param name="getPlaneMEL">
                                             <expr:path>$getPlaneMEL.responsePart</expr:path>

@@ -19,7 +19,7 @@ declare function local:func($getPlaneRequest as element() (:: schema-element(ns1
     <ns1:getPlaneResponse>
     <ns1:description> There are currently {
            count($getPlaneBNE/ns1:aircraftList/ns1:aircraft)+count($getPlaneMEL/ns1:aircraftList/ns1:aircraft)
-    } aircraft airborne in Australia
+    } aircraft airborne in the airspace
     </ns1:description>
     
     <ns1:aircraftList>
