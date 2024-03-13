@@ -3,18 +3,15 @@ xquery version "1.0" encoding "utf-8";
 (:: OracleAnnotationVersion "1.0" ::)
 
 declare namespace ns1="http://example.com/aircraftSchema";
-
 (:: import schema at "../schema/Aircraft.xsd" ::)
 
 declare namespace ns2="http://example.com/aircraftBaseSchema";
-
 (:: import schema at "../schema/AircraftBase.xsd" ::)
 
 declare variable $getPlaneRequest as element() (:: schema-element(ns1:getPlaneRequest) ::) external;
 declare variable $getPlaneBNE as element() (:: schema-element(ns1:getPlaneResponse) ::) external;
 declare variable $getPlaneMEL as element() (:: schema-element(ns1:getPlaneResponse) ::) external;
  
-
 declare function local:func($getPlaneRequest as element() (:: schema-element(ns1:getPlaneRequest) ::) (:: schema-element(ns1:getPlaneResponse) ::)) {
     <ns1:getPlaneResponse>
     <ns1:description> There are currently {
@@ -34,7 +31,7 @@ declare function local:func($getPlaneRequest as element() (:: schema-element(ns1
           data($plane/ns2:callsign)
           
           else
-          (:if no callsign, callsign == rego :)
+          (:if no callsign, callsign == rego e.g. N1111X:)
           
           data($plane//ns2:regoNo)
           

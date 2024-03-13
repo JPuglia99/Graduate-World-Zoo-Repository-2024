@@ -1,15 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
-    <dgm:gComponent name="ATCgetPlanes">
-        <dgm:body borderWidth="2" arcRad="20" X="403" Y="26" width="130" height="61">
+    <dgm:gReference name="BNEBusinessService">
+        <dgm:body borderWidth="2" arcRad="20" X="822" Y="26" width="136" height="54">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="812" Y="19" width="156" height="68">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="BNEBusinessService" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:nodeIcon URI="/oracle/sb/tooling/ide/sca/internal/icons/icon_transport_http_20x20.png" X="14" Y="4" width="20" height="20"/>
+        <dgm:operations/>
+    </dgm:gReference>
+    <dgm:gReference name="MELBusinessService">
+        <dgm:body borderWidth="2" arcRad="20" X="822" Y="146" width="136" height="54">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="812" Y="139" width="156" height="68">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="MELBusinessService" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:nodeIcon URI="/oracle/sb/tooling/ide/sca/internal/icons/icon_transport_http_20x20.png" X="14" Y="4" width="20" height="20"/>
+        <dgm:operations/>
+    </dgm:gReference>
+    <dgm:gComponent name="getPlanesBNE_MELCombined">
+        <dgm:body borderWidth="2" arcRad="20" X="579" Y="26" width="130" height="86">
+            <dgm:borderColor r="178" g="138" b="53"/>
+            <dgm:lightBgColor r="255" g="226" b="142"/>
+            <dgm:darkBgColor r="255" g="198" b="77"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="569" Y="19" width="150" height="102">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="__service__" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:outputPort name="BNEBusinessService" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:outputPort name="MELBusinessService" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:nodeIcon URI="/oracle/sb/tooling/ide/sca/internal/icons/icon_flow_20x20.gif" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="getPlansBNE_MELCombined">
+        <dgm:body borderWidth="2" arcRad="20" X="579" Y="146" width="130" height="86">
+            <dgm:borderColor r="178" g="138" b="53"/>
+            <dgm:lightBgColor r="255" g="226" b="142"/>
+            <dgm:darkBgColor r="255" g="198" b="77"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="569" Y="139" width="150" height="102">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="__service__" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:outputPort name="BNEBusinessService" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:outputPort name="MELBusinessService" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:nodeIcon URI="/oracle/sb/tooling/ide/sca/internal/icons/icon_flow_20x20.gif" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="ATC">
+        <dgm:body borderWidth="2" arcRad="20" X="336" Y="86" width="130" height="86">
             <dgm:borderColor r="109" g="136" b="65"/>
             <dgm:lightBgColor r="201" g="224" b="155"/>
             <dgm:darkBgColor r="157" g="195" b="93"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="393" Y="19" width="150" height="77">
+        <dgm:shadow arcRad="20" X="326" Y="79" width="150" height="102">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="__service__" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:outputPort name="flow.1424917740.getPlanesBNE_MELCombined" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:outputPort name="flow.1424917740.getPlansBNE_MELCombined" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
         <dgm:nodeIcon URI="/oracle/sb/tooling/ide/sca/internal/icons/icon_pipeline_20x20.gif" X="10" Y="4" width="20" height="20"/>
     </dgm:gComponent>
+    <dgm:gWireLink source="getPlanesBNE_MELCombined/BNEBusinessService" target="BNEBusinessService" width="2">
+        <dgm:gSegment X1="719" Y1="51" X2="743" Y2="51"/>
+        <dgm:gSegment X1="743" Y1="51" X2="743" Y2="36"/>
+        <dgm:gSegment X1="743" Y1="36" X2="812" Y2="36"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="getPlanesBNE_MELCombined/MELBusinessService" target="MELBusinessService" width="2">
+        <dgm:gSegment X1="719" Y1="76" X2="788" Y2="76"/>
+        <dgm:gSegment X1="788" Y1="76" X2="788" Y2="156"/>
+        <dgm:gSegment X1="788" Y1="156" X2="812" Y2="156"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="getPlansBNE_MELCombined/BNEBusinessService" target="BNEBusinessService" width="2">
+        <dgm:gSegment X1="719" Y1="171" X2="758" Y2="171"/>
+        <dgm:gSegment X1="758" Y1="171" X2="758" Y2="36"/>
+        <dgm:gSegment X1="758" Y1="36" X2="812" Y2="36"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="getPlansBNE_MELCombined/MELBusinessService" target="MELBusinessService" width="2">
+        <dgm:gSegment X1="719" Y1="196" X2="773" Y2="196"/>
+        <dgm:gSegment X1="773" Y1="196" X2="773" Y2="156"/>
+        <dgm:gSegment X1="773" Y1="156" X2="812" Y2="156"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ATC/flow.1424917740.getPlanesBNE_MELCombined" target="getPlanesBNE_MELCombined/__service__" width="2">
+        <dgm:gSegment X1="476" Y1="111" X2="500" Y2="111"/>
+        <dgm:gSegment X1="500" Y1="111" X2="500" Y2="51"/>
+        <dgm:gSegment X1="500" Y1="51" X2="569" Y2="51"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ATC/flow.1424917740.getPlansBNE_MELCombined" target="getPlansBNE_MELCombined/__service__" width="2">
+        <dgm:gSegment X1="476" Y1="136" X2="500" Y2="136"/>
+        <dgm:gSegment X1="500" Y1="136" X2="500" Y2="171"/>
+        <dgm:gSegment X1="500" Y1="171" X2="569" Y2="171"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
 </dgm:gDiagram>
