@@ -111,8 +111,29 @@
                 </trf:replace>
             </bpel:extensionAssignOperation>
         </bpel:assign>
+        <bpel:assign>
+            <bpel:extensionAssignOperation>
+                <ns1:log>
+                    <ns1:expr>
+                        <expr:xqueryText>$getPlanCombined.responsePart</expr:xqueryText>
+                    </ns1:expr>
+                    <ns1:logLevel>error</ns1:logLevel>
+                    <ns1:message>~~~~~~~~~~~~~~~~~~~~~~~~~~~~Logging Combined Plans ~~~~~~~~~~~~~~~~~~~~~~~~~~~~</ns1:message>
+                </ns1:log>
+            </bpel:extensionAssignOperation>
+        </bpel:assign>
+        <bpel:assign>
+            <bpel:extensionAssignOperation>
+                <ns1:log>
+                    <ns1:expr>
+                        <expr:xqueryText>boolean($getPlanCombined.responsePart/air:flightPlanList/air:flightPlan)</expr:xqueryText>
+                    </ns1:expr>
+                    <ns1:message>~~~~~~~~~~~~~~~~~~~~~~~~~~~~Testing condition ~~~~~~~~~~~~~~~~~~~~~~~~~~~~</ns1:message>
+                </ns1:log>
+            </bpel:extensionAssignOperation>
+        </bpel:assign>
         <bpel:if>
-            <bpel:condition>count($getPlanCombined.responsePart/air:flightPlanList/air:flightPlan)&gt;0</bpel:condition>
+            <bpel:condition>boolean($getPlanCombined.responsePart/air:flightPlanList/air:flightPlan)</bpel:condition>
             <bpel:sequence>
                 <bpel:empty/>
             </bpel:sequence>
