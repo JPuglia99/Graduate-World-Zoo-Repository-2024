@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="892f4ed8-0fd1-46da-a394-a673887abf96" activeEnvironment="Default" name="getLibraryBooks" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="c47cfcc1-8f57-4801-baf7-c2c963f611ef" wsaVersion="NONE" name="LibraryBinding" type="wsdl" bindingName="{http://www.library.com}LibraryBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/JDeveloper/mywork/K%20Library/K%20Library/wsdl/KLibrary.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/JDeveloper/mywork/K%20Library/K%20Library/wsdl/KLibrary.wsdl"><con:part><con:url>file:/C:/JDeveloper/mywork/K%20Library/K%20Library/wsdl/KLibrary.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://www.library.com" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:lib="http://www.KLibrary.com/librarySchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:woli="http://www.library.com">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.KLibrary.com/librarySchema" schemaLocation="../schema/klibraryschema.xsd"/>
+    </xsd:schema>
+  </types>
+  <!--MessageTypes-->
+  <message name="getLibraryBooksRequest">
+    <wsdl:part name="requestPart" element="lib:getLibraryBooksRequest"/>
+  </message>
+  <message name="getLibraryBooksDataResponse">
+    <part name="responsePart" element="lib:getLibraryBooksDataResponse"/>
+  </message>
+  <message name="getDynamicBookRequest">
+    <part name="requestPart" element="lib:getDynamicBookRequest"/>
+  </message>
+  <message name="getDynamicBookResponse">
+    <part name="responsePart" element="lib:getDynamicBookResponse"/>
+  </message>
+  <message name="getMemberDataRequest">
+    <part name="requestPart" element="lib:getMemberDataRequest"/>
+  </message>
+  <message name="getLoanDataResponse">
+    <part name="responsePart" element="lib:getLoanDataResponse"/>
+  </message>
+  <message name="getLoanDetailsRequest">
+    <part name="requestPart" element="lib:getLoanDetailsRequest"/>
+  </message>
+  <message name="getLoanDetailsResponse">
+    <part name="responsePart" element="lib:getLoanDetailsResponse"/>
+  </message>
+  <message name="getMemberDataResponse">
+    <part name="responsePart" element="lib:getMemberDataResponse"/>
+  </message>
+  <!--PortType-->
+  <wsdl:portType name="LibraryServicePortType">
+    <wsdl:operation name="getLibraryBooks">
+      <wsdl:input message="woli:getLibraryBooksRequest"/>
+      <wsdl:output message="woli:getLibraryBooksDataResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getSpecificLibraryBooks">
+      <wsdl:input message="woli:getDynamicBookRequest"/>
+      <wsdl:output message="woli:getDynamicBookResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getLoanDetails">
+      <wsdl:input message="woli:getLoanDetailsRequest"/>
+      <wsdl:output message="woli:getLoanDetailsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getLoanData">
+      <wsdl:input message="woli:getLoanDetailsRequest"/>
+      <wsdl:output message="woli:getLoanDataResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getMemberData">
+      <wsdl:input message="woli:getMemberDataRequest"/>
+      <wsdl:output message="woli:getMemberDataResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <!--Binding-->
+  <wsdl:binding name="LibraryBinding" type="woli:LibraryServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getLibraryBooks">
+      <soap:operation soapAction="urn:getLibraryBooks"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSpecificLibraryBooks">
+      <soap:operation soapAction="urn:getSpecificLibraryBooks"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoanDetails">
+      <soap:operation soapAction="urn:getLoanDetails"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoanData">
+      <soap:operation soapAction="urn:getLoanData"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMemberData">
+      <soap:operation soapAction="urn:getMemberData"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <!--Service-->
+  <wsdl:service name="LibraryService">
+    <wsdl:port name="LibraryServicePort" binding="woli:LibraryBinding">
+      <soap:address location="http://www.library.com"/>
+    </wsdl:port>
+  </wsdl:service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\JDeveloper\mywork\K%20Library\K%20Library\schema\klibraryschema.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.KLibrary.com/librarySchema" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:lib="http://www.KLibrary.com/librarySchema" xmlns="http://www.library.com">
+  <!--USED Book Details-->
+  <xs:complexType name="BookType">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="author" type="xs:string"/>
+      <xs:element name="genre" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--USED Library Details-->
+  <xs:complexType name="LibraryType">
+    <xs:sequence>
+      <xs:element name="libraryName" type="xs:string"/>
+      <xs:element name="books">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="book" type="lib:BookType" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!--USED LibraryBooksRequest-->
+  <xs:element name="getLibraryBooksRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="libraryName" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--USED LibraryBooksData-->
+  <xs:element name="getLibraryBooksDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="library" type="lib:LibraryType" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--UNUSED getEntireLibraryDataResponse-->
+  <xs:element name="getEntireLibraryDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="library" type="lib:LibraryType" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="members">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="member">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="memberID" type="xs:string"/>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="email" type="xs:string"/>
+                    <xs:element name="number" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="loans">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="loan" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="loanID" type="xs:string"/>
+                    <xs:element name="memberID" type="xs:int"/>
+                    <xs:element name="title" type="xs:string"/>
+                    <xs:element name="erd" type="xs:date"/>
+                    <xs:element name="city" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--getMemberDetails Request Document-->
+  <xs:element name="getMemberDataRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="memberID"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--UNUSED Members can be found within a complex element, City,-->
+  <xs:element name="getMemberDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="city" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="members">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="member">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="memberID" type="xs:string"/>
+                          <xs:element name="name" type="xs:string"/>
+                          <xs:element name="email" type="xs:string"/>
+                          <xs:element name="number" type="xs:string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--UNUSED loanData Structure-->
+  <xs:element name="getLoanDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="loans">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="loan" type="lib:LoanType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="LoanType">
+    <xs:sequence>
+      <xs:element name="loanID" type="xs:string"/>
+      <xs:element name="memberID" type="xs:int"/>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="author" type="xs:string"/>
+      <xs:element name="erd" type="xs:date"/>
+      <xs:element name="city" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--IN PROGRESS DynamicBookRequest-->
+  <xs:element name="getDynamicBookRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string"/>
+        <xs:element name="author" type="xs:string"/>
+        <xs:element name="libraryName" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SearchType">
+    <xs:sequence>
+      <xs:element name="libraryName" type="xs:string" maxOccurs="unbounded"/>
+      <xs:element name="title" type="xs:string" maxOccurs="unbounded"/>
+      <xs:element name="author" type="xs:string" maxOccurs="unbounded"/>
+      <xs:element name="message" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResultType">
+    <xs:sequence>
+      <xs:element name="result" type="lib:SearchType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--IN PROGRESSED AllBooktitles response-->
+  <xs:element name="getDynamicBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="results" type="lib:ResultType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--getLoanDetails Request Document-->
+  <xs:element name="getLoanDetailsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="loanID"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--getLoanDetails Response Document-->
+  <xs:element name="getLoanDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="loans" type="lib:loanDetails"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="loanDetails">
+    <xs:sequence>
+      <xs:element name="loanID"/>
+      <xs:element name="memberID"/>
+      <xs:element name="name"/>
+      <xs:element name="email"/>
+      <xs:element name="bookBorrowed"/>
+      <xs:element name="bookAuthor"/>
+      <xs:element name="returnDate"/>
+      <xs:element name="library"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://AU-LPC21YC2L:8080/BrisbaneLibraryBooks</con:endpoint><con:endpoint>http://AU-LPC21YC2L:8080/LoanData</con:endpoint><con:endpoint>http://AU-LPC21YC2L:8080/MemberData</con:endpoint><con:endpoint>http://AU-LPC21YC2L:8080/PerthLibraryBooks</con:endpoint><con:endpoint>http://AU-LPC21YC2L:8080/SPBlibrary</con:endpoint><con:endpoint>http://AU-LPC21YC2L:8080/SydneyLibraryBooks</con:endpoint><con:endpoint>http://www.KLibrary.com/librarySchema</con:endpoint><con:endpoint>http://www.library.com</con:endpoint></con:endpoints><con:operation id="628a9000-365c-47f8-affa-bbae46fde818" isOneWay="false" action="urn:getLibraryBooks" name="getLibraryBooks" bindingOperationName="getLibraryBooks" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="09f53973-a8d4-4dc7-8a33-844a22f4c627" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.library.com</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <lib:getLibraryBooksRequest>\r
+         <lib:libraryName>Sydney Library</lib:libraryName>\r
+      </lib:getLibraryBooksRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.KLibrary.com/librarySchema/libraryPortType/getLibraryBooksRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="6e1567cc-f25f-482a-af8f-7d03ea6dbd4d" isOneWay="false" action="urn:getSpecificLibraryBooks" name="getSpecificLibraryBooks" bindingOperationName="getSpecificLibraryBooks" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b62b1e32-a600-48ab-bd6e-9e0b6a0faaf4" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.library.com</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <lib:getDynamicBookRequest>\r
+         <lib:title>?</lib:title>\r
+         <lib:author>?</lib:author>\r
+         <lib:libraryName>?</lib:libraryName>\r
+      </lib:getDynamicBookRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getSpecificLibraryBooks"/></con:call></con:operation><con:operation id="c28d0d05-b521-477e-b913-bdb7a045d0ec" isOneWay="false" action="urn:getLoanDetails" name="getLoanDetails" bindingOperationName="getLoanDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="503b1072-a3c0-4cec-b174-06961d83e309" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://AU-LPC21YC2L:8080/MemberData</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <lib:getLoanDetailsRequest>\r
+         <lib:loanID>?</lib:loanID>\r
+      </lib:getLoanDetailsRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getSpecificLibraryBooks"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e2fd02a0-ebe5-49a4-81c6-4eb63aab2142" isOneWay="false" action="urn:getLoanData" name="getLoanData" bindingOperationName="getLoanData" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0941a6ec-b477-42c8-b440-478e51cbb12c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://AU-LPC21YC2L:8080/BrisbaneLibraryBooks</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <lib:getLoanDetailsRequest>\r
+         <lib:loanID>?</lib:loanID>\r
+      </lib:getLoanDetailsRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getLoanData"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="49be3257-3e7e-4d42-898a-c6f4321c4e8c" isOneWay="false" action="urn:getMemberData" name="getMemberData" bindingOperationName="getMemberData" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5c26f469-716f-40db-bb38-d621c5bcdb1d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://AU-LPC21YC2L:8080/BrisbaneLibraryBooks</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <lib:getMemberDataRequest>\r
+         <lib:memberID>?</lib:memberID>\r
+      </lib:getMemberDataRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getMemberData"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="fcc3a38e-4b49-4a85-9270-a6f1368c5dc2" port="8080" path="/SPBlibrary" host="AU-LPC21YC2L" name="Libraries" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getLibraryBooks" id="a737ad62-9272-48a8-9bda-6fef059b532b" interface="LibraryBinding" operation="getLibraryBooks"><con:settings/><con:defaultResponse>Brisbane Response</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath><![CDATA[// Extract the value of the <lib:libraryName> element from the request
+def libraryName = context.requestContent["//lib:libraryName"].text()
+
+// Define response templates for each library
+def responseTemplates = [
+    "Sydney Library": "<lib:getLibraryBooksResponse>Sydney Library Books</lib:getLibraryBooksResponse>",
+    "Perth Library": "<lib:getLibraryBooksResponse>Perth Library Books</lib:getLibraryBooksResponse>",
+    "Brisbane Library": "<lib:getLibraryBooksResponse>Brisbane Library Books</lib:getLibraryBooksResponse>"
+    // Add more library names and corresponding response templates as needed
+]
+
+// Check if the library name is in the response templates
+if (responseTemplates.containsKey(libraryName)) {
+    // Return the corresponding response template
+    return responseTemplates[libraryName]
+} else {
+    // If the library name is not recognized, return a default response
+    return "<lib:getLibraryBooksResponse>Unknown Library</lib:getLibraryBooksResponse>"
+}
+]]></con:dispatchPath><con:response name="Response 1" id="7a87f34a-5a21-4212-9ee7-43f1d3d143e9" httpResponseStatus="200" encoding="UTF-8"><con:settings><con:setting id="WsdlSettings@enable-mtom">false</con:setting></con:settings><con:responseContent><![CDATA[<?xml version="1.0" encoding="windows-1252" ?>
+<lib:getLibraryBooksResponse xmlns:lib="http://www.KLibrary.com/librarySchema">
+  <lib:library>
+    <lib:libraryName>Sydney Library</lib:libraryName>
+    <lib:books>
+      <lib:book>
+        <lib:title>Foundations in Coding</lib:title>
+        <lib:author>Jake Puglia</lib:author>
+        <lib:genre>Computer Science, Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Foundations in Teaching</lib:title>
+        <lib:author>Jake Puglia</lib:author>
+        <lib:genre>Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Boots and Cats, An Introduction to Beatboxing</lib:title>
+        <lib:author>DJ Munuswamy</lib:author>
+        <lib:genre>Music, Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Fast Fingers of Fate, How to get faster at Typing 101</lib:title>
+        <lib:author>Yoon Kim</lib:author>
+        <lib:genre>Computer Science</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Tech Integration Basics</lib:title>
+        <lib:author>Andrew Dorman</lib:author>
+        <lib:genre>Computer Science, Learning</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>?</lib:title>
+        <lib:author>?</lib:author>
+        <lib:genre>?</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>?</lib:title>
+        <lib:author>?</lib:author>
+        <lib:genre>?</lib:genre>
+      </lib:book>
+    </lib:books>
+  </lib:library>
+  <lib:library>
+    <lib:libraryName>Brisbane Library</lib:libraryName>
+    <lib:books>
+      <lib:book>
+        <lib:title>Programming Fundamentals</lib:title>
+        <lib:author>Emily Johnson</lib:author>
+        <lib:genre>Computer Science, Programming</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Introduction to Data Structures</lib:title>
+        <lib:author>Michael Smith</lib:author>
+        <lib:genre>Computer Science</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>The Art of Fiction</lib:title>
+        <lib:author>Anna Jones</lib:author>
+        <lib:genre>Literature, Fiction</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>History of World War II</lib:title>
+        <lib:author>David Thompson</lib:author>
+        <lib:genre>History</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Principles of Economics</lib:title>
+        <lib:author>Emma Brown</lib:author>
+        <lib:genre>Economics</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Foundations in Coding</lib:title>
+        <lib:author>Jake Puglia</lib:author>
+        <lib:genre>Computer Science, Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Foundations in Teaching</lib:title>
+        <lib:author>Jake Puglia</lib:author>
+        <lib:genre>Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>The Power of Now</lib:title>
+        <lib:author>Eckhart Tolle</lib:author>
+        <lib:genre>Self-Help, Spirituality</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>The Silent Patient</lib:title>
+        <lib:author>Alex Michaelides</lib:author>
+        <lib:genre>Psychological Thriller</lib:genre>
+      </lib:book>
+    </lib:books>
+  </lib:library>
+  <lib:library>
+    <lib:name>Perth Library</lib:name>
+    <lib:books>
+      <!-- Perth and Brisbane Library book -->
+      <lib:book>
+        <lib:title>The Power of Now</lib:title>
+        <lib:author>Eckhart Tolle</lib:author>
+        <lib:genre>Self-Help, Spirituality</lib:genre>
+      </lib:book>
+      <!-- New book for Perth Library -->
+      <lib:book>
+        <lib:title>Understanding Australian Wildlife</lib:title>
+        <lib:author>Lisa Green</lib:author>
+        <lib:genre>Nature, Wildlife</lib:genre>
+      </lib:book>
+      <!-- Autofilled books -->
+      <lib:book>
+        <lib:title>The Art of Cooking</lib:title>
+        <lib:author>John Smith</lib:author>
+        <lib:genre>Cooking</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Mastering Chess</lib:title>
+        <lib:author>William Johnson</lib:author>
+        <lib:genre>Games, Strategy</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Painting Techniques</lib:title>
+        <lib:author>Emma White</lib:author>
+        <lib:genre>Art</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Financial Planning for Beginners</lib:title>
+        <lib:author>Michael Brown</lib:author>
+        <lib:genre>Finance, Self-Help</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Exploring the Universe</lib:title>
+        <lib:author>Sarah Green</lib:author>
+        <lib:genre>Science, Astronomy</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Great Adventures Around the World</lib:title>
+        <lib:author>David Miller</lib:author>
+        <lib:genre>Travel, Adventure</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>The Power of Now</lib:title>
+        <lib:author>Eckhart Tolle</lib:author>
+        <lib:genre>Self-Help, Spirituality</lib:genre>
+      </lib:book>
+    </lib:books>
+  </lib:library>
+</lib:getLibraryBooksResponse>
+]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.KLibrary.com/librarySchema/libraryPortType/getLibraryBooksResponse"/></con:response><con:response name="Brisbane Response" id="c0663308-ccae-4960-8eb6-78c7d9995c01" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <lib:getLibraryBooksResponse>
+         <!--1 or more repetitions:-->
+         <lib:library>
+            <lib:libraryName>Brisbane Library</lib:libraryName>
+            <lib:books>
+               <lib:book>
+                  <lib:title>Programming Fundamentals</lib:title>
+                  <lib:author>Emily Johnson</lib:author>
+                  <lib:genre>Computer Science, Programming</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Introduction to Data Structures</lib:title>
+                  <lib:author>Michael Smith</lib:author>
+                  <lib:genre>Computer Science</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>The Art of Fiction</lib:title>
+                  <lib:author>Anna Jones</lib:author>
+                  <lib:genre>Literature, Fiction</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>History of World War II</lib:title>
+                  <lib:author>David Thompson</lib:author>
+                  <lib:genre>History</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Principles of Economics</lib:title>
+                  <lib:author>Emma Brown</lib:author>
+                  <lib:genre>Economics</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Foundations in Coding</lib:title>
+                  <lib:author>Jake Puglia</lib:author>
+                  <lib:genre>Computer Science, Education</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Foundations in Teaching</lib:title>
+                  <lib:author>Jake Puglia</lib:author>
+                  <lib:genre>Education</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>The Power of Now</lib:title>
+                  <lib:author>Eckhart Tolle</lib:author>
+                  <lib:genre>Self-Help, Spirituality</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>The Silent Patient</lib:title>
+                  <lib:author>Alex Michaelides</lib:author>
+                  <lib:genre>Psychological Thriller</lib:genre>
+               </lib:book>
+            </lib:books>
+         </lib:library>
+      </lib:getLibraryBooksResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.KLibrary.com/librarySchema/libraryPortType/getLibraryBooksResponse"/></con:response><con:response name="Sydney Response" id="f299521c-f6cf-4c8c-a3ec-c17df14fe110" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <lib:getLibraryBooksResponse>
+         <!--1 or more repetitions:-->
+         <lib:library>
+            <lib:libraryName>Sydney Library</lib:libraryName>
+            <lib:books>
+               <lib:book>
+                  <lib:title>Foundations in Coding</lib:title>
+                  <lib:author>Jake Puglia</lib:author>
+                  <lib:genre>Computer Science, Education</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Foundations in Teaching</lib:title>
+                  <lib:author>Jake Puglia</lib:author>
+                  <lib:genre>Education</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Boots and Cats, An Introduction to Beatboxing</lib:title>
+                  <lib:author>DJ Munuswamy</lib:author>
+                  <lib:genre>Music, Education</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Fast Fingers of Fate, How to get faster at Typing 101</lib:title>
+                  <lib:author>Yoon Kim</lib:author>
+                  <lib:genre>Computer Science</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Tech Integration Basics</lib:title>
+                  <lib:author>Andrew Dorman</lib:author>
+                  <lib:genre>Computer Science, Learning</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>?</lib:title>
+                  <lib:author>?</lib:author>
+                  <lib:genre>?</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>?</lib:title>
+                  <lib:author>?</lib:author>
+                  <lib:genre>?</lib:genre>
+               </lib:book>
+            </lib:books>
+         </lib:library>
+      </lib:getLibraryBooksResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.KLibrary.com/librarySchema/libraryPortType/getLibraryBooksResponse"/></con:response><con:response name="Perth Response" id="33882ee6-73c2-4632-98a7-b3e2f76bdc20" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <lib:getLibraryBooksResponse>
+         <lib:library>
+            <lib:name>Perth Library</lib:name>
+            <lib:books>
+               <lib:book>
+                  <lib:title>The Power of Now</lib:title>
+                  <lib:author>Eckhart Tolle</lib:author>
+                  <lib:genre>Self-Help, Spirituality</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Understanding Australian Wildlife</lib:title>
+                  <lib:author>Lisa Green</lib:author>
+                  <lib:genre>Nature, Wildlife</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>The Art of Cooking</lib:title>
+                  <lib:author>John Smith</lib:author>
+                  <lib:genre>Cooking</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Mastering Chess</lib:title>
+                  <lib:author>William Johnson</lib:author>
+                  <lib:genre>Games, Strategy</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Painting Techniques</lib:title>
+                  <lib:author>Emma White</lib:author>
+                  <lib:genre>Art</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Financial Planning for Beginners</lib:title>
+                  <lib:author>Michael Brown</lib:author>
+                  <lib:genre>Finance, Self-Help</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Exploring the Universe</lib:title>
+                  <lib:author>Sarah Green</lib:author>
+                  <lib:genre>Science, Astronomy</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Great Adventures Around the World</lib:title>
+                  <lib:author>David Miller</lib:author>
+                  <lib:genre>Travel, Adventure</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>The Power of Now</lib:title>
+                  <lib:author>Eckhart Tolle</lib:author>
+                  <lib:genre>Self-Help, Spirituality</lib:genre>
+               </lib:book>
+            </lib:books>
+         </lib:library>
+      </lib:getLibraryBooksResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.KLibrary.com/librarySchema/libraryPortType/getLibraryBooksResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:mockService id="390b8cd4-eec3-46ce-9cca-e69475143e52" port="8080" path="/SydneyLibraryBooks" host="AU-LPC21YC2L" name="Sydney Library" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getLibraryBooks" id="78831973-01e3-468c-9284-ca9e72187ab0" interface="LibraryBinding" operation="getLibraryBooks"><con:settings/><con:defaultResponse>SydneyLibraryResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="SydneyLibraryResponse" id="85550b45-7811-43d0-90a1-284d7b69aabc" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <lib:getLibraryBooksDataResponse>
+         <lib:library>
+            <lib:libraryName>Sydney Library</lib:libraryName>
+            <lib:books>
+               <lib:book>
+                  <lib:title>Foundations in Coding</lib:title>
+                  <lib:author>Jake Puglia</lib:author>
+                  <lib:genre>Computer Science, Education, IT, Technology</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Foundations in Teaching</lib:title>
+                  <lib:author>Jake Puglia</lib:author>
+                  <lib:genre>Education</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Boots and Cats, An Introduction to Beatboxing</lib:title>
+                  <lib:author>DJ Munuswamy</lib:author>
+                  <lib:genre>Music, Education</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Fast Fingers of Fate, How to get faster at Typing 101</lib:title>
+                  <lib:author>Yoon Kim</lib:author>
+                  <lib:genre>Computer Science, IT, Coding, Technology</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Tech Integration Basics</lib:title>
+                  <lib:author>Andrew Dorman</lib:author>
+                  <lib:genre>Computer Science, Learning, Technology, IT</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>A Work in Progress</lib:title>
+                  <lib:author>Leo Wang</lib:author>
+                  <lib:genre>Psychological Horror, IT</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>The Power of Now</lib:title>
+                  <lib:author>Eckhart Tolle</lib:author>
+                  <lib:genre>Self-Help, Spirituality</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>The Silent Patient</lib:title>
+                  <lib:author>Alex Michaelides</lib:author>
+                  <lib:genre>Psychological Thriller</lib:genre>
+               </lib:book>
+            </lib:books>
+         </lib:library>
+      </lib:getLibraryBooksDataResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.KLibrary.com/librarySchema/libraryPortType/getLibraryBooksResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:mockService id="0abcf753-15c0-4d2c-ae8c-14350c99b669" port="8080" path="/PerthLibraryBooks" host="AU-LPC21YC2L" name="Perth Library" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getLibraryBooks" id="c9c9a398-b32a-468b-aa3f-716f21a94287" interface="LibraryBinding" operation="getLibraryBooks"><con:settings/><con:defaultResponse>PerthLibraryResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="PerthLibraryResponse" id="f3f850ff-6cc6-4b08-91ca-8d3e009b1cab" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <lib:getLibraryBooksDataResponse>
+         <!--1 or more repetitions:-->
+         <lib:library>
+            <lib:libraryName>Perth Library</lib:libraryName>
+            <lib:books>
+               <lib:book>
+                  <lib:title>Programming Fundamentals</lib:title>
+                  <lib:author>Emily Johnson</lib:author>
+                  <lib:genre>Computer Science, Programming, Technology, IT</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Introduction to Data Structures</lib:title>
+                  <lib:author>Glenn Bumanlag</lib:author>
+                  <lib:genre>Computer Science, Technology, Information, IT</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>The Art of Fiction</lib:title>
+                  <lib:author>Anna Jones</lib:author>
+                  <lib:genre>Literature, Fiction</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>History of World War II</lib:title>
+                  <lib:author>David Thompson</lib:author>
+                  <lib:genre>History</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Principles of Economics</lib:title>
+                  <lib:author>Emma Brown</lib:author>
+                  <lib:genre>Economics, Business</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Foundations in Coding</lib:title>
+                  <lib:author>Jake Puglia</lib:author>
+                  <lib:genre>Computer Science, Education, Technology, IT, Coding</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Foundations in Teaching</lib:title>
+                  <lib:author>Jake Puglia</lib:author>
+                  <lib:genre>Education</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Smashing It</lib:title>
+                  <lib:author>Sicilia Perumalsamy</lib:author>
+                  <lib:genre>Computer Science, Technology, IT, Information</lib:genre>
+               </lib:book>
+            </lib:books>
+         </lib:library>
+      </lib:getLibraryBooksDataResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.KLibrary.com/librarySchema/libraryPortType/getLibraryBooksResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:mockService id="ad2793bb-1ffd-49eb-bc24-0ff4d26c8a41" port="8080" path="/BrisbaneLibraryBooks" host="AU-LPC21YC2L" name="Brisbane Library" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getLibraryBooks" id="fca16a0c-6e30-4d00-92a9-b20067fabfe0" interface="LibraryBinding" operation="getLibraryBooks"><con:settings/><con:defaultResponse>BrisbaneLibraryResponse</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="BrisbaneLibraryResponse" id="033bcb7c-f358-4874-ae75-239e8cf9aa34" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <lib:getLibraryBooksDataResponse>
+         <lib:library>
+            <lib:libraryName>Brisbane Library</lib:libraryName>
+            <lib:books>
+            	<lib:book>
+            	   <lib:title>Fast Fingers of Fate, How to get faster at Typing 101</lib:title>
+                  <lib:author>Yoon Kim</lib:author>
+                  <lib:genre>Computer Science, IT, Technology, Coding, Typing</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Delivering Leadership</lib:title>
+                  <lib:author>Brett Lomas</lib:author>
+                  <lib:genre>Growth, Business</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Understanding Australian Wildlife</lib:title>
+                  <lib:author>Lisa Green</lib:author>
+                  <lib:genre>Nature, Wildlife, Animal, Mammal, Flower</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>The Art of Cooking</lib:title>
+                  <lib:author>John Smith</lib:author>
+                  <lib:genre>Cooking, Science, Food</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Mastering Chess</lib:title>
+                  <lib:author>William Johnson</lib:author>
+                  <lib:genre>Games, Strategy</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Painting Techniques</lib:title>
+                  <lib:author>Emma White</lib:author>
+                  <lib:genre>Art</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Financial Planning for Beginners</lib:title>
+                  <lib:author>Michael Brown</lib:author>
+                  <lib:genre>Finance, Self-Help</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Exploring the Universe</lib:title>
+                  <lib:author>Sarah Green</lib:author>
+                  <lib:genre>Science, Astronomy</lib:genre>
+               </lib:book>
+               <lib:book>
+                  <lib:title>Great Adventures Around the World</lib:title>
+                  <lib:author>David Miller</lib:author>
+                  <lib:genre>Travel, Adventure</lib:genre>
+               </lib:book>
+            </lib:books>
+         </lib:library>
+      </lib:getLibraryBooksDataResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.KLibrary.com/librarySchema/libraryPortType/getLibraryBooksResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:mockService id="30bfe5a2-b426-4af5-90f3-f8f86f2f809f" port="8080" path="/LoanData" host="AU-LPC21YC2L" name="LoanData" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getLoanDetails" id="bae7552c-d64a-4ee8-8bff-e43f5cb79d99" interface="LibraryBinding" operation="getLoanDetails"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="621d27b2-df30-4c49-95c6-1ffe48f6565e" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<?xml version="1.0" encoding="windows-1252" ?>
+<lib:loanData xmlns:lib="http://www.KLibrary.com/librarySchema">
+  <lib:loans>
+    <!-- Sydney Request -->
+    <lib:loan>
+      <lib:loanID>L1001</lib:loanID>
+      <lib:memberID>1234</lib:memberID>
+      <lib:title>Foundations in Coding</lib:title>
+      <lib:author>Jake Puglia</lib:author>
+      <lib:erd>2024-04-01</lib:erd>
+      <lib:city>Sydney</lib:city>
+    </lib:loan>
+    <!-- Brisbane request -->
+    <lib:loan>
+      <lib:loanID>L1002</lib:loanID>
+      <lib:memberID>5432</lib:memberID>
+      <lib:title>The Art of Cooking</lib:title>
+      <lib:author>John Smith</lib:author>
+      <lib:erd>2024-03-20</lib:erd>
+      <lib:city>Brisbane</lib:city>
+    </lib:loan>
+   <!-- Perth request -->
+    <lib:loan>
+      <lib:loanID>L1003</lib:loanID>
+      <lib:memberID>2468</lib:memberID>
+      <lib:title>Introduction to Data Structures</lib:title>
+      <lib:author>Michael Smith</lib:author>
+      <lib:erd>2024-05-02</lib:erd>
+      <lib:city>Perth</lib:city>
+    </lib:loan>
+  </lib:loans>
+</lib:loanData>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getSpecificLibraryBooks"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:mockService id="af67b4b4-f57d-4c6a-bedd-b756894b55d7" port="8080" path="/MemberData" host="AU-LPC21YC2L" name="MemberData" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getMemberData" id="b71ef1c9-6e51-4218-8a07-7356883d0103" interface="LibraryBinding" operation="getMemberData"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="6f4fc1b4-7f38-4db1-a5a3-ddad31d6ce99" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<?xml version="1.0" encoding="windows-1252" ?>
+<lib:memberData xmlns:lib="http://www.KLibrary.com/librarySchema">
+  <lib:city name="Sydney">
+    <lib:members>
+      <lib:member>
+      <lib:memberID>1234</lib:memberID>
+            <lib:name>John Smith</lib:name>
+            <lib:email>john.smith@example.com</lib:email>
+            <lib:number>0412 345 678</lib:number>
+      </lib:member>
+      <lib:member>
+            <lib:memberID>5678</lib:memberID>
+            <lib:name>Alice Johnson</lib:name>
+            <lib:email>alice.johnson@example.com</lib:email>
+            <lib:number>0423 456 789</lib:number>
+        </lib:member>
+    </lib:members>
+  </lib:city>
+  <lib:city name="Brisbane">
+    <lib:members>
+      <lib:member>
+      <lib:memberID>9876</lib:memberID>
+            <lib:name>Michael Brown</lib:name>
+            <lib:email>michael.brown@example.com</lib:email>
+            <lib:number>0434 567 890</lib:number>
+      </lib:member>
+      <lib:member>
+            <lib:memberID>5432</lib:memberID>
+            <lib:name>Sarah Lee</lib:name>
+            <lib:email>sarah.lee@example.com</lib:email>
+            <lib:number>0445 678 901</lib:number>
+        </lib:member>
+    </lib:members>
+  </lib:city>
+  <lib:city name="Perth">
+    <lib:members>
+      <lib:member>
+      <lib:memberID>2468</lib:memberID>
+            <lib:name>David Wilson</lib:name>
+            <lib:email>david.wilson@example.com</lib:email>
+            <lib:number>0456 789 012</lib:number>
+      </lib:member>
+      <lib:member>
+            <lib:memberID>1357</lib:memberID>
+            <lib:name>Emily Taylor</lib:name>
+            <lib:email>emily.taylor@example.com</lib:email>
+            <lib:number>0467 890 123</lib:number>
+        </lib:member>
+    </lib:members>
+  </lib:city>
+</lib:memberData>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getMemberData"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

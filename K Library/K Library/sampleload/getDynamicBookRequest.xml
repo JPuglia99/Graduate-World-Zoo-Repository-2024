@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<lib:getDynamicBookRequest xmlns:lib="http://www.KLibrary.com/librarySchema">
+  <lib:title>Tech Integration Basics</lib:title>
+  <lib:author>Andrew Dorman</lib:author>
+  <lib:libraryName>Sydney Library</lib:libraryName>
+</lib:getDynamicBookRequest>

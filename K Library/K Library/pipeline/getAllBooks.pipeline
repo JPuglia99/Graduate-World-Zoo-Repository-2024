@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="K Library/wsdl/KLibrary"/>
+            <con:binding>
+                <con:name>LibraryBinding</con:name>
+                <con:namespace>http://www.library.com</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-N3f57fe95.N663f44e8.0.18e2fd6664e.N8000">
+            <con:stage id="_StageId-N3f57fe95.N663f44e8.0.18e2fd6664e.N7ffe" name="Request Logging">
+                <con:context/>
+                <con:actions>
+                    <con1:log xmlns:con1="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57fe95.N663f44e8.0.18e2fd6664e.N7ff6</con2:id>
+                        <con1:logLevel>debug</con1:logLevel>
+                        <con1:message>##############REQUEST##############</con1:message>
+                    </con1:log>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N3f57fe95.N663f44e8.0.18e2fd6664e.N7f89" name="Request Validation" errorHandler="error-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7ffa">
+                <con:context>
+                    <con1:userNsDecl prefix="lib" namespace="http://www.KLibrary.com/librarySchema" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                </con:context>
+                <con:actions>
+                    <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57fe95.N663f44e8.0.18e2fd6664e.N7f88</con2:id>
+                        <con1:schema ref="K Library/schema/klibraryschema"/>
+                        <con1:schemaElement xmlns:lib="http://www.KLibrary.com/librarySchema">lib:getLibraryBooksRequest</con1:schemaElement>
+                        <con1:varName>body</con1:varName>
+                        <con1:location>
+                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./lib:getLibraryBooksRequest</con2:xpathText>
+                        </con1:location>
+                    </con1:validate>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f57fe95.N663f44e8.0.18e2fd6664e.N7fff">
+            <con:stage id="_StageId-N3f57fe95.N663f44e8.0.18e2fd6664e.N7ffd" name="Response Logging">
+                <con:context/>
+                <con:actions>
+                    <con1:log xmlns:con1="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57fe95.N663f44e8.0.18e2fd6664e.N7ff3</con2:id>
+                        <con1:logLevel>debug</con1:logLevel>
+                        <con1:message>##############RESPONSE##############</con1:message>
+                    </con1:log>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N3f57fe95.N663f44e8.0.18e2fd6664e.N7f85" name="Response Validation">
+                <con:context>
+                    <con1:userNsDecl prefix="lib" namespace="http://www.KLibrary.com/librarySchema" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                </con:context>
+                <con:actions>
+                    <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57fe95.N663f44e8.0.18e2fd6664e.N7f84</con2:id>
+                        <con1:schema ref="K Library/schema/klibraryschema"/>
+                        <con1:schemaElement xmlns:lib="http://www.KLibrary.com/librarySchema">lib:getLibraryBooksDataResponse</con1:schemaElement>
+                        <con1:varName>body</con1:varName>
+                        <con1:location>
+                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/lib:getLibraryBooksDataResponse</con2:xpathText>
+                        </con1:location>
+                    </con1:validate>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="error" name="error-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7ffa">
+            <con:stage id="_StageId-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7ff9" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="lib" namespace="http://www.KLibrary.com/librarySchema" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                </con:context>
+                <con:actions>
+                    <con1:replace varName="body" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7ff6</con2:id>
+                        <con1:location>
+                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
+                        </con1:location>
+                        <con1:expr>
+                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/lib:getLibraryBooksRequest</con2:xqueryText>
+                        </con1:expr>
+                    </con1:replace>
+                    <con1:reply isError="true" xmlns:con1="http://www.bea.com/wli/sb/stages/config">
+                        <con1:id>_ActionId-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7ff3</con1:id>
+                    </con1:reply>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Pipeline Pair Node1">
+                <con:request>request-N3f57fe95.N663f44e8.0.18e2fd6664e.N8000</con:request>
+                <con:response>response-N3f57fe95.N663f44e8.0.18e2fd6664e.N7fff</con:response>
+            </con:pipeline-node>
+            <con:route-node name="toBusinessService">
+                <con:context/>
+                <con:actions>
+                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57fe95.N663f44e8.0.18e2fd6664e.N7fbd</con2:id>
+                        <con2:service ref="K Library/splitjoin/getLibraryBooks" xsi:type="con1:FlowRef" xmlns:con1="http://www.bea.com/alsb/flow/resources/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config"/>
+                        <con1:operation>getLibraryBooks</con1:operation>
+                        <con1:outboundTransform/>
+                        <con1:responseTransform/>
+                    </con1:route>
+                </con:actions>
+            </con:route-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

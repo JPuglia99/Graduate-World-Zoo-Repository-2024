@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:lib="http://www.KLibrary.com/librarySchema"
+           targetNamespace="http://www.KLibrary.com/librarySchema" elementFormDefault="qualified"
+           xmlns="http://www.library.com">
+           
+  <!-- USED Book Details -->
+  <xs:complexType name="BookType">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="author" type="xs:string"/>
+      <xs:element name="genre" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!-- USED Library Details -->
+  <xs:complexType name="LibraryType">
+    <xs:sequence>
+      <xs:element name="libraryName" type="xs:string"/>
+      <xs:element name="books">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="book" type="lib:BookType" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!-- USED LibraryBooksRequest -->
+  <xs:element name="getLibraryBooksRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="libraryName" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- USED LibraryBooksData -->
+  <xs:element name="getLibraryBooksDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="library" type="lib:LibraryType" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!--  UNUSED getEntireLibraryDataResponse -->
+  <xs:element name="getEntireLibraryDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="library" type="lib:LibraryType" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="members">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="member">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="memberID" type="xs:string"/>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="email" type="xs:string"/>
+                    <xs:element name="number" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="loans">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="loan" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="loanID" type="xs:string"/>
+                    <xs:element name="memberID" type="xs:int"/>
+                    <xs:element name="title" type="xs:string"/>
+                    <xs:element name="erd" type="xs:date"/>
+                    <xs:element name="city" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- getMemberDetails Request Document -->
+  <xs:element name="getMemberDataRequest">
+    <xs:complexType>
+      <xs:sequence> 
+        <xs:element name="memberID"></xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- Members can be found within a complex element, City,-->
+  <xs:element name="getMemberDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="city" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="members">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="member">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="memberID" type="xs:string"/>
+                          <xs:element name="name" type="xs:string"/>
+                          <xs:element name="email" type="xs:string"/>
+                          <xs:element name="number" type="xs:string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- UNUSED loanData Structure -->
+  <xs:element name="getLoanDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="loans">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="loan" type="lib:LoanType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:complexType name="LoanType">
+    <xs:sequence>
+      <xs:element name="loanID" type="xs:string"/>
+      <xs:element name="memberID" type="xs:int"/>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="author" type="xs:string"/>
+      <xs:element name="erd" type="xs:date"/>
+      <xs:element name="city" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- IN PROGRESS DynamicBookRequest -->
+  <xs:element name="getDynamicBookRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string"/>
+        <xs:element name="author" type="xs:string"/>
+        <xs:element name="libraryName" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:complexType name="SearchType">
+    <xs:sequence>
+      <xs:element name="libraryName" type="xs:string" maxOccurs="unbounded"></xs:element>
+      <xs:element name="title" type="xs:string" maxOccurs="unbounded"></xs:element>
+      <xs:element name="author" type="xs:string" maxOccurs="unbounded"></xs:element>
+      <xs:element name="message" type="xs:string" maxOccurs="unbounded"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ResultType">
+      <xs:sequence>
+        <xs:element name="result" type="lib:SearchType" maxOccurs="unbounded"></xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  
+    <!-- IN PROGRESSED AllBooktitles response-->
+  <xs:element name="getDynamicBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="results" type="lib:ResultType"></xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- getLoanDetails Request Document -->
+  <xs:element name="getLoanDetailsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="loanID"></xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+    <!-- getLoanDetails Response Document -->
+  <xs:element name="getLoanDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="loans" type="lib:loanDetails"></xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:complexType name="loanDetails">
+    <xs:sequence>
+      <xs:element name="loanID"></xs:element>
+      <xs:element name="memberID"></xs:element>
+      <xs:element name="name"></xs:element>
+      <xs:element name="email"></xs:element>
+      <xs:element name="bookBorrowed"></xs:element>
+      <xs:element name="bookAuthor"></xs:element>
+      <xs:element name="returnDate"></xs:element>
+      <xs:element name="library"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>

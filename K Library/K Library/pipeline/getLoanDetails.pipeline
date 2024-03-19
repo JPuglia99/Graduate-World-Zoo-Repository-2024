@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="K Library/wsdl/KLibrary"/>
+            <con:binding>
+                <con:name>LibraryBinding</con:name>
+                <con:namespace>http://www.library.com</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7f56">
+            <con:stage id="_StageId-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7f54" name="Stage1">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7f55">
+            <con:stage id="_StageId-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7f53" name="Stage1">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Pipeline Pair Node1">
+                <con:request>request-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7f56</con:request>
+                <con:response>response-ad082c9.N4d8fb0f2.0.18e39ddfe59.N7f55</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

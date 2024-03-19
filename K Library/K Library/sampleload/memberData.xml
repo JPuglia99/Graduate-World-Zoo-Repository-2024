@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<lib:memberData xmlns:lib="http://www.KLibrary.com/librarySchema">
+  <lib:city name="Sydney">
+    <lib:members>
+      <lib:member>
+      <lib:memberID>1234</lib:memberID>
+            <lib:name>John Smith</lib:name>
+            <lib:email>john.smith@example.com</lib:email>
+            <lib:number>0412 345 678</lib:number>
+      </lib:member>
+      <lib:member>
+            <lib:memberID>5678</lib:memberID>
+            <lib:name>Alice Johnson</lib:name>
+            <lib:email>alice.johnson@example.com</lib:email>
+            <lib:number>0423 456 789</lib:number>
+        </lib:member>
+    </lib:members>
+  </lib:city>
+  <lib:city name="Brisbane">
+    <lib:members>
+      <lib:member>
+      <lib:memberID>9876</lib:memberID>
+            <lib:name>Michael Brown</lib:name>
+            <lib:email>michael.brown@example.com</lib:email>
+            <lib:number>0434 567 890</lib:number>
+      </lib:member>
+      <lib:member>
+            <lib:memberID>5432</lib:memberID>
+            <lib:name>Sarah Lee</lib:name>
+            <lib:email>sarah.lee@example.com</lib:email>
+            <lib:number>0445 678 901</lib:number>
+        </lib:member>
+    </lib:members>
+  </lib:city>
+  <lib:city name="Perth">
+    <lib:members>
+      <lib:member>
+      <lib:memberID>2468</lib:memberID>
+            <lib:name>David Wilson</lib:name>
+            <lib:email>david.wilson@example.com</lib:email>
+            <lib:number>0456 789 012</lib:number>
+      </lib:member>
+      <lib:member>
+            <lib:memberID>1357</lib:memberID>
+            <lib:name>Emily Taylor</lib:name>
+            <lib:email>emily.taylor@example.com</lib:email>
+            <lib:number>0467 890 123</lib:number>
+        </lib:member>
+    </lib:members>
+  </lib:city>
+</lib:memberData>

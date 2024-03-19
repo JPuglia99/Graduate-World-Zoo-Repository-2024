@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<lib:loanData xmlns:lib="http://www.KLibrary.com/librarySchema">
+  <lib:loans>
+    <!-- Sydney Request -->
+    <lib:loan>
+      <lib:loanID>L1001</lib:loanID>
+      <lib:memberID>1234</lib:memberID>
+      <lib:title>Foundations in Coding</lib:title>
+      <lib:author>Jake Puglia</lib:author>
+      <lib:erd>2024-04-01</lib:erd>
+      <lib:city>Sydney</lib:city>
+    </lib:loan>
+    <!-- Brisbane request -->
+    <lib:loan>
+      <lib:loanID>L1002</lib:loanID>
+      <lib:memberID>5432</lib:memberID>
+      <lib:title>The Art of Cooking</lib:title>
+      <lib:author>John Smith</lib:author>
+      <lib:erd>2024-03-20</lib:erd>
+      <lib:city>Brisbane</lib:city>
+    </lib:loan>
+  </lib:loans>
+</lib:loanData>

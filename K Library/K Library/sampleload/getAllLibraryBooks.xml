@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<lib:LibraryBooksData xmlns:lib="http://www.KLibrary.com/librarySchema">
+  <lib:library>
+    <lib:libraryName>Sydney Library</lib:libraryName>
+    <lib:books>
+      <lib:book>
+        <lib:title>Foundations in Coding</lib:title>
+        <lib:author>Jake Puglia</lib:author>
+        <lib:genre>Computer Science, Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Foundations in Teaching</lib:title>
+        <lib:author>Jake Puglia</lib:author>
+        <lib:genre>Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Boots and Cats, An Introduction to Beatboxing</lib:title>
+        <lib:author>DJ Munuswamy</lib:author>
+        <lib:genre>Music, Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Fast Fingers of Fate, How to get faster at Typing 101</lib:title>
+        <lib:author>Yoon Kim</lib:author>
+        <lib:genre>Computer Science</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Tech Integration Basics</lib:title>
+        <lib:author>Andrew Dorman</lib:author>
+        <lib:genre>Computer Science, Learning</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>A Work in Progress</lib:title>
+        <lib:author>Leo Wang</lib:author>
+        <lib:genre>Psychological Horror</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Smashing It</lib:title>
+        <lib:author>Sicilia Perumalsamy</lib:author>
+        <lib:genre>Computer Science</lib:genre>
+      </lib:book>
+    </lib:books>
+  </lib:library>
+  <lib:library>
+    <lib:libraryName>Brisbane Library</lib:libraryName>
+    <lib:books>
+      <lib:book>
+        <lib:title>Programming Fundamentals</lib:title>
+        <lib:author>Emily Johnson</lib:author>
+        <lib:genre>Computer Science, Programming</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Introduction to Data Structures</lib:title>
+        <lib:author>Michael Smith</lib:author>
+        <lib:genre>Computer Science</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>The Art of Fiction</lib:title>
+        <lib:author>Anna Jones</lib:author>
+        <lib:genre>Literature, Fiction</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>History of World War II</lib:title>
+        <lib:author>David Thompson</lib:author>
+        <lib:genre>History</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Principles of Economics</lib:title>
+        <lib:author>Emma Brown</lib:author>
+        <lib:genre>Economics</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Foundations in Coding</lib:title>
+        <lib:author>Jake Puglia</lib:author>
+        <lib:genre>Computer Science, Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Foundations in Teaching</lib:title>
+        <lib:author>Jake Puglia</lib:author>
+        <lib:genre>Education</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>The Power of Now</lib:title>
+        <lib:author>Eckhart Tolle</lib:author>
+        <lib:genre>Self-Help, Spirituality</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>The Silent Patient</lib:title>
+        <lib:author>Alex Michaelides</lib:author>
+        <lib:genre>Psychological Thriller</lib:genre>
+      </lib:book>
+    </lib:books>
+  </lib:library>
+  <lib:library>
+    <lib:libraryName>Perth Library</lib:libraryName>
+    <lib:books>
+      <lib:book>
+        <lib:title>The Power of Now</lib:title>
+        <lib:author>Eckhart Tolle</lib:author>
+        <lib:genre>Self-Help, Spirituality</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Understanding Australian Wildlife</lib:title>
+        <lib:author>Lisa Green</lib:author>
+        <lib:genre>Nature, Wildlife</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>The Art of Cooking</lib:title>
+        <lib:author>John Smith</lib:author>
+        <lib:genre>Cooking</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Mastering Chess</lib:title>
+        <lib:author>William Johnson</lib:author>
+        <lib:genre>Games, Strategy</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Painting Techniques</lib:title>
+        <lib:author>Emma White</lib:author>
+        <lib:genre>Art</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Financial Planning for Beginners</lib:title>
+        <lib:author>Michael Brown</lib:author>
+        <lib:genre>Finance, Self-Help</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Exploring the Universe</lib:title>
+        <lib:author>Sarah Green</lib:author>
+        <lib:genre>Science, Astronomy</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>Great Adventures Around the World</lib:title>
+        <lib:author>David Miller</lib:author>
+        <lib:genre>Travel, Adventure</lib:genre>
+      </lib:book>
+      <lib:book>
+        <lib:title>The Power of Now</lib:title>
+        <lib:author>Eckhart Tolle</lib:author>
+        <lib:genre>Self-Help, Spirituality</lib:genre>
+      </lib:book>
+    </lib:books>
+  </lib:library>
+</lib:LibraryBooksData>

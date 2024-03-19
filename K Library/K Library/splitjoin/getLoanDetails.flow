@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpel:process name="getLoanDetails"
+              targetNamespace="http://xmlns.oracle.com/K_Library/K_Library/"
+              xmlns:tns="http://xmlns.oracle.com/K_Library/K_Library/"
+              xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:rescon="http://www.bea.com/alsb/flow/resources/config"
+              xmlns:bea="http://www.bea.com/bpel/ui/extensions"
+              xmlns:ext="http://www.bea.com/bpel/extensions"
+              xmlns:expr="http://www.bea.com/wli/sb/stages/config"
+              xmlns:trf="http://www.bea.com/wli/sb/stages/transform/config"
+              xmlns:bind="http://www.library.com" 
+              bea:name="getLoanDetails"
+              rescon:snippetVersion="1.0"
+              xmlns:ns0="http://www.bea.com/wli/sb/reference" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:ns1="http://www.bea.com/wli/sb/stages/logging/config">
+    <bpel:partnerLinks>
+        <bpel:partnerLink name="getLoanDetails" partnerLinkType="tns:getLoanDetails"
+                          myRole="getLoanDetails">
+	       </bpel:partnerLink>
+        <bpel:partnerLink name="getLoanData" partnerLinkType="tns:getLoanData" partnerRole="getLoanData"/>
+        <bpel:partnerLink name="getMemberData" partnerLinkType="tns:getMemberData" partnerRole="getMemberData"/>
+    </bpel:partnerLinks>
+
+	   <bpel:variables>
+        <bpel:variable name="request"
+	                      messageType="bind:getLoanDetailsRequest">
+	       </bpel:variable>
+	       <bpel:variable name="getLoanDetailsResponse" messageType="bind:getLoanDetailsResponse">
+	       </bpel:variable>
+        <bpel:variable name="getLoanDataRequest" messageType="bind:getLoanDetailsRequest"/>
+        <bpel:variable name="getLoanDataResponse" messageType="bind:getLoanDataResponse"/>
+        <bpel:variable name="getMemberDataRequest" messageType="bind:getMemberDataRequest"/>
+        <bpel:variable name="getMemberDataResponse" messageType="bind:getMemberDataResponse"/>
+    </bpel:variables>
+
+    <bpel:sequence>
+        <bpel:receive partnerLink="getLoanDetails" operation="getLoanDetails" variable="request" createInstance="yes">
+	           <rescon:receiveInfo>
+                <rescon:wsdl ref="K Library/wsdl/KLibrary" binding="bind:LibraryBinding"/>
+            </rescon:receiveInfo>
+        </bpel:receive>
+        <bpel:flow>
+            <bpel:scope bea:name="get Loan List">
+                <bpel:sequence>
+                    <bpel:assign>
+                        <bpel:extensionAssignOperation bea:name="Loan Data List Request">
+                            <trf:assign varName="getLoanDataRequest.requestPart">
+                                <trf:expr>
+                                    <expr:xqueryText>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema"&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;lib:getLoanDetailsRequest&gt;
+         &lt;lib:loanID&gt;?&lt;/lib:loanID&gt;
+      &lt;/lib:getLoanDetailsRequest&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</expr:xqueryText>
+                                </trf:expr>
+                            </trf:assign>
+                        </bpel:extensionAssignOperation>
+                    </bpel:assign>
+                    <bpel:invoke partnerLink="getLoanData" operation="getLoanData" inputVariable="getLoanDataRequest"
+                                 bea:name="LoanData Service" outputVariable="getLoanDataResponse">
+                        <rescon:invokeInfo>
+                            <rescon:service ref="K Library/pipeline/getLoanData" xsi:type="ns0:BusinessServiceRef"/>
+                        </rescon:invokeInfo>
+                    </bpel:invoke>
+                    <bpel:assign>
+                        <bpel:extensionAssignOperation bea:name="Logging LoanData">
+                            <ns1:log>
+                                <ns1:expr>
+                                    <expr:xqueryText>$getLoanDataResponse.responsePart</expr:xqueryText>
+                                </ns1:expr>
+                                <ns1:logLevel>error</ns1:logLevel>
+                                <ns1:message>############## LOAN DATA ##############</ns1:message>
+                            </ns1:log>
+                        </bpel:extensionAssignOperation>
+                    </bpel:assign>
+                </bpel:sequence>
+            </bpel:scope>
+            <bpel:scope bea:name="get Member List">
+                <bpel:sequence>
+                    <bpel:assign>
+                        <bpel:extensionAssignOperation bea:name="Member Data List Request">
+                            <trf:assign varName="getMemberDataRequest.requestPart">
+                                <trf:expr>
+                                    <expr:xqueryText>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lib="http://www.KLibrary.com/librarySchema"&gt;
+   &lt;soapenv:Header/&gt;
+   &lt;soapenv:Body&gt;
+      &lt;lib:getMemberDataRequest&gt;
+         &lt;lib:memberID&gt;?&lt;/lib:memberID&gt;
+      &lt;/lib:getMemberDataRequest&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</expr:xqueryText>
+                                </trf:expr>
+                            </trf:assign>
+                        </bpel:extensionAssignOperation>
+                    </bpel:assign>
+                    <bpel:invoke bea:name="MemberData Service" partnerLink="getMemberData"
+                                 operation="getMemberData" inputVariable="getMemberDataRequest"
+                                 outputVariable="getMemberDataResponse">
+                        <rescon:invokeInfo>
+                            <rescon:service ref="K Library/pipeline/getMemberData" xsi:type="ns0:BusinessServiceRef"/>
+                        </rescon:invokeInfo>
+                    </bpel:invoke>
+                    <bpel:assign>
+                        <bpel:extensionAssignOperation bea:name="Logging MemberData">
+                            <ns1:log>
+                                <ns1:expr>
+                                    <expr:xqueryText>$getMemberDataResponse.responsePart</expr:xqueryText>
+                                </ns1:expr>
+                                <ns1:logLevel>error</ns1:logLevel>
+                                <ns1:message>############## MEMBER DATA ##############</ns1:message>
+                            </ns1:log>
+                        </bpel:extensionAssignOperation>
+                    </bpel:assign>
+                </bpel:sequence>
+            </bpel:scope>
+        </bpel:flow>
+        <bpel:assign>
+            <bpel:extensionAssignOperation>
+                <trf:assign varName="getLoanDetailsResponse.responsePart">
+                    <trf:expr>
+                        <expr:xqueryTransform>
+                            <expr:resource ref="K Library/query/getLoanDetails"/>
+                            <expr:param name="getLoanDetailsRequest">
+                                <expr:path>$request.requestPart</expr:path>
+                            </expr:param>
+                        </expr:xqueryTransform>
+                    </trf:expr>
+                </trf:assign>
+            </bpel:extensionAssignOperation>
+        </bpel:assign>
+        <bpel:reply partnerLink="getLoanDetails" operation="getLoanDetails" variable="getLoanDetailsResponse"></bpel:reply>
+    </bpel:sequence>
+</bpel:process>

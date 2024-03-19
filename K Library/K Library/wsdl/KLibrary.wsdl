@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="http://www.library.com" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:lib="http://www.KLibrary.com/librarySchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:woli="http://www.library.com">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.KLibrary.com/librarySchema" schemaLocation="../schema/klibraryschema.xsd"/>
+    </xsd:schema>
+  </types>
+  
+  <!-- MessageTypes -->
+  <message name="getLibraryBooksRequest">
+    <wsdl:part name="requestPart" element="lib:getLibraryBooksRequest"/>
+  </message>
+  <message name="getLibraryBooksDataResponse">
+    <part name="responsePart" element="lib:getLibraryBooksDataResponse"/>
+  </message>
+  <message name="getDynamicBookRequest">
+    <part name="requestPart" element="lib:getDynamicBookRequest"/>
+  </message>
+  <message name="getDynamicBookResponse">
+    <part name="responsePart" element="lib:getDynamicBookResponse"/>
+  </message>
+  <message name="getMemberDataRequest">
+    <part name="requestPart" element="lib:getMemberDataRequest"/>
+  </message>
+  <message name="getLoanDataResponse">
+    <part name="responsePart" element="lib:getLoanDataResponse"/>
+  </message>
+  <message name="getLoanDetailsRequest">
+    <part name="requestPart" element="lib:getLoanDetailsRequest"/>
+  </message>
+  <message name="getLoanDetailsResponse">
+    <part name="responsePart" element="lib:getLoanDetailsResponse"/>
+  </message>
+  <message name="getMemberDataResponse">
+    <part name="responsePart" element="lib:getMemberDataResponse"/>
+  </message>
+  
+  <!-- PortType -->
+  <wsdl:portType name="LibraryServicePortType">
+    <wsdl:operation name="getLibraryBooks">
+      <wsdl:input message="woli:getLibraryBooksRequest"/>
+      <wsdl:output message="woli:getLibraryBooksDataResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getSpecificLibraryBooks">
+      <wsdl:input message="woli:getDynamicBookRequest"/>
+      <wsdl:output message="woli:getDynamicBookResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getLoanDetails">
+      <wsdl:input message="woli:getLoanDetailsRequest"/>
+      <wsdl:output message="woli:getLoanDetailsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getLoanData">
+      <wsdl:input message="woli:getLoanDetailsRequest"/>
+      <wsdl:output message="woli:getLoanDataResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getMemberData">
+      <wsdl:input message="woli:getMemberDataRequest"/>
+      <wsdl:output message="woli:getMemberDataResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  
+  <!-- Binding -->
+  <wsdl:binding name="LibraryBinding" type="woli:LibraryServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getLibraryBooks">
+      <soap:operation soapAction="urn:getLibraryBooks"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSpecificLibraryBooks">
+      <soap:operation soapAction="urn:getSpecificLibraryBooks"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoanDetails">
+      <soap:operation soapAction="urn:getLoanDetails"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoanData">
+      <soap:operation soapAction="urn:getLoanData"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMemberData">
+      <soap:operation soapAction="urn:getMemberData"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <!-- Service -->
+  <wsdl:service name="LibraryService">
+    <wsdl:port name="LibraryServicePort" binding="woli:LibraryBinding">
+      <soap:address location="http://www.library.com"/>
+    </wsdl:port>
+  </wsdl:service>
+</definitions>
